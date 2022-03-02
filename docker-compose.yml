@@ -2,41 +2,39 @@ version: "3.7"
 services: 
   microservice1:
     image: python:3.8-alpine
-    command: pip install -r requeriments.txt
+    # command: pip install -r requeriments.txt
     ports:
       - 7000:7000
     working_dir: /app
-    #volume: ./:/app1
-    volumes: 
-      - ./app:f\Usuários\Patrick\Documents\@Codigos\Portifoleo\MS-aplication\app1
+    # volumes: 
+    #     ./:/home/patrick-lnx/app
+    # volumes: 
+    #   - ./app:f\Usuários\Patrick\Documents\@Codigos\Portifoleo\MS-aplication\
     
   microservice2:
     image: python:3.8-alpine
-    command: pip install -r requeriments.txt
+    # command: pip install -r requeriments.txt
     ports:
       - 7001:7001
     working_dir: /app
-    #volume: ./:/app2
-    volumes: 
-      - ./app:f\Usuários\Patrick\Documents\@Codigos\Portifoleo\MS-aplication\app2
+    # volumes: 
+    #   - ./:/home/patrick-lnx/app
+    # volumes: 
+    #   - ./app:f\Usuários\Patrick\Documents\@Codigos\Portifoleo\MS-aplication\
 
   rabbitmq:
     image: "rabbitmq:3-management"
     hostname: "rabbit1"
     environment:
       RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
-      RABBITMQ_DEFAULT_USER: "rabbitmq"
-      RABBITMQ_DEFAULT_PASS: "rabbitmq"
+      RABBITMQ_DEFAULT_USER: "guest"
+      RABBITMQ_DEFAULT_PASS: "guest"
       RABBITMQ_DEFAULT_VHOST: "/"
     ports:
       - "15672:15672"
       - "5672:5672"
     labels:
       NAME: "rabbitmq1"
-    volumes:
-      - "./enabled_plugins:/etc/rabbitmq/enabled_plugins"
-      #- "./rabbitmq.config:/etc/rabbitmq/rabbitmq.config:ro"
-      #- "./autocluster-0.4.1.ez:/usr/lib/rabbitmq/lib/rabbitmq_server-3.5.5/plugins/autocluster-0.4.1.ez"
 
   redis:
     image: redis:alpine
