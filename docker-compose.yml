@@ -2,23 +2,40 @@ version: "3.7"
 services: 
   microservice1:
     image: python:3.8-alpine
-    # command: pip install -r requeriments.txt
+    command: 
+      - pip install -r requeriments.txt
+      - python /app/rabbit_recive/recive_queue.py
     ports:
       - 7000:7000
     working_dir: /app
-    # volumes: 
-    #     ./:/home/patrick-lnx/app
+    volumes: 
+        - ./MS1:/home/opc/app
     # volumes: 
     #   - ./app:f\Usuários\Patrick\Documents\@Codigos\Portifoleo\MS-aplication\
     
   microservice2:
     image: python:3.8-alpine
-    # command: pip install -r requeriments.txt
+    command: 
+      - pip install -r requeriments.txt
+      - python /app/rabbit_recive/recive_queue.py
     ports:
       - 7001:7001
     working_dir: /app
+    volumes: 
+      - ./MS2:/home/opc/app
     # volumes: 
-    #   - ./:/home/patrick-lnx/app
+    #   - ./app:f\Usuários\Patrick\Documents\@Codigos\Portifoleo\MS-aplication\
+
+  api:
+    image: python:3.8-alpine
+    command: 
+      - pip install -r requeriments.txt
+      - python /app/server.py
+    ports:
+      - 7001:7001
+    working_dir: /app
+    volumes: 
+      - ./MS2:/home/opc/app
     # volumes: 
     #   - ./app:f\Usuários\Patrick\Documents\@Codigos\Portifoleo\MS-aplication\
 

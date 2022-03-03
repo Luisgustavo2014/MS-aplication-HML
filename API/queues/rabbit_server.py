@@ -4,11 +4,11 @@
 import pika
 
 
-class RabbitMqSend():
+class RabbitMqCreate():
 
-    def send_msg_user(self, route, msg):
+    def create_queues(self):
         try:
-            print('[X] Connetcting server')
+            print('[X] Connetcting RabbitMQ server')
             connection = pika.BlockingConnection(
                 pika.ConnectionParameters(host='localhost', port=5672))
             channel = connection.channel()
@@ -16,12 +16,13 @@ class RabbitMqSend():
         except Exception as e:
             print(f'[X] CONNECTING ERROR: {e}')
 
-        channel.basic_publish(exchange='', routing_key=route, body=str(msg))
+        channel.queue_declare(queue='user')
+        channel.queue_declare(queue='order')
 
-        print("     [X] Sent 'Message'")
-        connection.close()
+        print('     [*] Queues created successful!')
+
 
 # if __name__ == '__main__':
 
-#     RMQ = RabbitMq()
-#     RMQ.send_msg_user()
+#     RMQ = RabbitMqCreate()
+#     RMQ.create_queues()
