@@ -9,7 +9,7 @@ services:
       - 7000:7000
     working_dir: /app
     volumes: 
-        - ./MS1:/home/opc/app
+        - ./MS-aplication/MS1:/home/opc/app
     # volumes: 
     #   - ./app:f\Usuários\Patrick\Documents\@Codigos\Portifoleo\MS-aplication\
     
@@ -22,7 +22,7 @@ services:
       - 7001:7001
     working_dir: /app
     volumes: 
-      - ./MS2:/home/opc/app
+      - ./MS-aplication/MS2:/home/opc/app
     # volumes: 
     #   - ./app:f\Usuários\Patrick\Documents\@Codigos\Portifoleo\MS-aplication\
 
@@ -35,7 +35,7 @@ services:
       - 7001:7001
     working_dir: /app
     volumes: 
-      - ./MS2:/home/opc/app
+      - /home/opc/MS-aplication/API:/app
     # volumes: 
     #   - ./app:f\Usuários\Patrick\Documents\@Codigos\Portifoleo\MS-aplication\
 
