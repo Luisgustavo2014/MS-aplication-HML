@@ -6,7 +6,7 @@ services:
       - pip install -r requeriments.txt
       - python /app/rabbit_recive/recive_queue.py
     ports:
-      - 7000:7000
+      - 7001:7001
     working_dir: /app
     volumes: 
         - ./MS-aplication/MS1:/home/opc/app
@@ -19,7 +19,7 @@ services:
       - pip install -r requeriments.txt
       - python /app/rabbit_recive/recive_queue.py
     ports:
-      - 7001:7001
+      - 7002:7002
     working_dir: /app
     volumes: 
       - ./MS-aplication/MS2:/home/opc/app
@@ -32,7 +32,7 @@ services:
       - pip install -r requeriments.txt
       - python /app/server.py
     ports:
-      - 7001:7001
+      - 7000:7000
     working_dir: /app
     volumes: 
       - /home/opc/MS-aplication/API:/app
