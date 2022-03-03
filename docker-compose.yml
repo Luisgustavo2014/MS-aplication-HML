@@ -1,19 +1,20 @@
 version: "3.7"
 services: 
   microservice1:
-    build: /API/dockerfile
+    build: 
+      dockerfile: /MS1/dockerfile
     ports:
       - 7001:7001
-    working_dir: /app
     
   microservice2:
-    build: /MS1/dockerfile
+    build:
+      dockerfile: /MS2/dockerfile
     ports:
       - 7002:7002
-    working_dir: /app
 
   api:
-    build: /MS2/dockerfile
+    build: 
+      dockerfile: /API/dockerfile
     ports:
       - 7000:7000
 

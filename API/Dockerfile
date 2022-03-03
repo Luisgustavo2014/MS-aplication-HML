@@ -1,6 +1,6 @@
 FROM python:3.8-alpine
 COPY ./API/requirements.txt /app/requirements.txt
-VOLUME ./API/:/app/
+COPY ./API/:/app/
 WORKDIR /app
 RUN pip install -r requirements.txt
 RUN ls -l
