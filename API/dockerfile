@@ -4,5 +4,6 @@ VOLUME ./API/:/app/
 WORKDIR /app
 RUN pip install -r requirements.txt
 RUN ls -l
+#RUN python ./app/server.py
 EXPOSE 7000
       
