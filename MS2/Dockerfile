@@ -4,6 +4,5 @@ COPY ./MS2/ /app/
 WORKDIR /app
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
-RUN python ./rabbit_recive/revice_queue.py
-#RUN ls -l
+RUN python rabbit_recive/revice_queue.py
 EXPOSE 7002

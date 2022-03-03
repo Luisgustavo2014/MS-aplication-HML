@@ -5,6 +5,6 @@ WORKDIR /app
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 RUN ls -l
-#RUN python ./app/server.py
+RUN python server.py
 EXPOSE 7000
       
