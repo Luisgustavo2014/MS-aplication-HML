@@ -4,7 +4,7 @@
 import pika
 import os
 
-HOST_RABBIT = os.environ['host']
+HOST_RABBIT = os.environ['HOST']
 
 class RabbitMqCreate():
 

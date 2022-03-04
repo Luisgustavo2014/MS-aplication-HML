@@ -1,7 +1,7 @@
 FROM python:3.8-alpine
 COPY ./MS2/requirements.txt /app/requirements.txt
 COPY ./MS2/ /app/
-ENV HOST='localhost'
+ENV HOST='10.5.0.10'
 WORKDIR /app
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
