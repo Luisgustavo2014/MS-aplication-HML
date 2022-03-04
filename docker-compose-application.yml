@@ -23,7 +23,3 @@ services:
       - 7002:7002
     networks:
       - network-service
-
-networks:
-  network-service:
-    driver: bridge
