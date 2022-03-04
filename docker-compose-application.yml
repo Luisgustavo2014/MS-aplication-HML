@@ -4,7 +4,8 @@ services:
     build:
       dockerfile: API/Dockerfile
     ports:
-      - 7000:7000
+      - "7000:7000"
+      - "5672:5672"
     networks:
       - network-application
 
@@ -12,7 +13,8 @@ services:
     build:
       dockerfile: MS1/Dockerfile
     ports:
-      - 7001:7001
+      - "7001:7001"
+      - "5672:5672"
     networks:
       - network-application
 
@@ -20,7 +22,8 @@ services:
     build:
       dockerfile: MS2/Dockerfile
     ports:
-      - 7002:7002
+      - "7002:7002"
+      - "5672:5672"
     networks:
       - network-application
 

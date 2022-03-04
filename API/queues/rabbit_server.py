@@ -14,7 +14,7 @@ class RabbitMqCreate():
             connection = pika.BlockingConnection(
                 pika.ConnectionParameters(host=HOST_RABBIT, port=5672))
             channel = connection.channel()
-
+            
         except Exception as e:
             print(f'[X] CONNECTING ERROR: {e}')
 
@@ -24,7 +24,7 @@ class RabbitMqCreate():
         print('     [*] Queues created successful!')
 
 
-# if __name__ == '__main__':
+if __name__ == '__main__':
 
-#     RMQ = RabbitMqCreate()
-#     RMQ.create_queues()
+    RMQ = RabbitMqCreate()
+    RMQ.create_queues()
