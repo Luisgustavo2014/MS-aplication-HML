@@ -1,5 +1,5 @@
 version: "3.7"
-services: 
+services:
   rabbitmq:
     image: "rabbitmq:3-management"
     hostname: "rabbit1"
@@ -18,9 +18,10 @@ services:
 
   redis:
     image: redis:alpine
-  networks:
-      - network-service
+    networks:
+        - network-service
 
 networks:
   network-service:
+    name: network-internal
     driver: bridge

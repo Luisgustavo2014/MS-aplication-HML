@@ -1,25 +1,30 @@
 version: "3.7"
-services: 
+services:
   api:
-    build: 
+    build:
       dockerfile: API/Dockerfile
     ports:
       - 7000:7000
     networks:
-      - network-service
+      - network-application
 
   microservice1:
-    build: 
+    build:
       dockerfile: MS1/Dockerfile
     ports:
       - 7001:7001
     networks:
-      - network-service
-    
+      - network-application
+
   microservice2:
     build:
       dockerfile: MS2/Dockerfile
     ports:
       - 7002:7002
     networks:
-      - network-service
+      - network-application
+
+networks:
+    network-application:
+        external:
+            name: network-internal
