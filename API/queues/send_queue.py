@@ -2,7 +2,9 @@
 # -*- encoding: utf-8 -*-
 
 import pika
+import os
 
+HOST_RABBIT = os.environ['HOST']
 
 class RabbitMqSend():
 
@@ -10,7 +12,7 @@ class RabbitMqSend():
         try:
             print('[X] Connetcting server')
             connection = pika.BlockingConnection(
-                pika.ConnectionParameters(host='localhost', port=5672))
+                pika.ConnectionParameters(host=HOST_RABBIT, port=5672))
             channel = connection.channel()
 
         except Exception as e:

@@ -5,16 +5,25 @@ services:
       dockerfile: API/Dockerfile
     ports:
       - 7000:7000
+    networks:
+      - network-service
 
   microservice1:
     build: 
       dockerfile: MS1/Dockerfile
     ports:
       - 7001:7001
+    networks:
+      - network-service
     
   microservice2:
     build:
       dockerfile: MS2/Dockerfile
     ports:
       - 7002:7002
+    networks:
+      - network-service
 
+networks:
+  network-service:
+    driver: bridge
