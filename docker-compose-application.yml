@@ -6,7 +6,7 @@ services:
     ports:
       - "7000:7000"
     networks:
-      - network-application
+      - network-internal
 
   microservice1:
     build:
@@ -14,7 +14,7 @@ services:
     ports:
       - "7001:7001"
     networks:
-      - network-application
+      - network-internal
 
   microservice2:
     build:
@@ -22,9 +22,8 @@ services:
     ports:
       - "7002:7002"
     networks:
-      - network-application
+      - network-internal
 
 networks:
-    network-application:
-        external:
-            name: network-internal
+    network-internal:
+        external: true
