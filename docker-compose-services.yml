@@ -25,6 +25,36 @@ services:
       network-service:
         ipv4_address: 10.5.0.9
 
+  api:
+    build:
+      dockerfile: API/Dockerfile
+    ports:
+      - "7000:7000"
+    depends_on:
+      - rabbitmq
+    networks:
+      - network-service
+
+  microservice1:
+    build:
+      dockerfile: MS1/Dockerfile
+    ports:
+      - "7001:7001"
+    depends_on:
+      - rabbitmq
+    networks:
+      - network-service
+
+  microservice2:
+    build:
+      dockerfile: MS2/Dockerfile
+    ports:
+      - "7002:7002"
+    depends_on:
+      - rabbitmq
+    networks:
+      - network-service
+
 networks:
   network-service:
     name: network-internal
@@ -32,4 +62,4 @@ networks:
     ipam:
       config:
         - subnet: 10.5.0.0/16
-        - gateway: 10.5.0.1
+          gateway: 10.5.0.1
