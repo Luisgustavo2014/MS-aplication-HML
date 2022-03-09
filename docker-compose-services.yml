@@ -16,14 +16,14 @@ services:
     labels:
       NAME: "rabbitmq1"
     networks:
-      network-service:
-        ipv4_address: 10.5.0.10
+      - network-service
+        # ipv4_address: 10.5.0.10
 
   redis:
     image: redis:alpine
     networks:
-      network-service:
-        ipv4_address: 10.5.0.9
+      - network-service
+        # ipv4_address: 10.5.0.9
 
   api:
     build:
@@ -41,6 +41,7 @@ services:
     ports:
       - "7001:7001"
     depends_on:
+      - api
       - rabbitmq
     networks:
       - network-service
@@ -51,6 +52,7 @@ services:
     ports:
       - "7002:7002"
     depends_on:
+      - api
       - rabbitmq
     networks:
       - network-service
@@ -60,6 +62,6 @@ networks:
     name: network-internal
     driver: bridge
     ipam:
-      config:
-        - subnet: 10.5.0.0/16
-          gateway: 10.5.0.1
+      # config:
+      #   - subnet: 10.5.0.0/16
+      #     gateway: 10.5.0.1
