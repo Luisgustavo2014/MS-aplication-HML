@@ -1,4 +1,13 @@
 version: "3.7"
+networks:
+  network-service:
+    name: network-internal
+    driver: bridge
+    ipam:
+      # config:
+      #   - subnet: 10.5.0.0/16
+      #     gateway: 10.5.0.1
+
 services:
   rabbitmq:
     image: "rabbitmq:3-management"
@@ -57,11 +66,3 @@ services:
     networks:
       - network-service
 
-networks:
-  network-service:
-    name: network-internal
-    driver: bridge
-    ipam:
-      # config:
-      #   - subnet: 10.5.0.0/16
-      #     gateway: 10.5.0.1
