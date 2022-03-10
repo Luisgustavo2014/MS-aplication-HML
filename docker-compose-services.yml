@@ -9,7 +9,7 @@ networks:
 
 services:
   rabbitmq:
-    image: "rabbitmq:3-management"
+    image: "rabbitmq:3-management-alpine"
     environment:
       # RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
       RABBITMQ_DEFAULT_USER: "guest"
@@ -31,36 +31,4 @@ services:
     networks:
       network-service:
         ipv4_address: 10.5.0.9
-
-  api:
-    build:
-      dockerfile: API/Dockerfile
-    ports:
-      - "7000:7000"
-    depends_on:
-      - rabbitmq
-    networks:
-      - network-service
-
-  microservice1:
-    build:
-      dockerfile: MS1/Dockerfile
-    ports:
-      - "7001:7001"
-    depends_on:
-      - api
-      - rabbitmq
-    networks:
-      - network-service
-
-  microservice2:
-    build:
-      dockerfile: MS2/Dockerfile
-    ports:
-      - "7002:7002"
-    depends_on:
-      - api
-      - rabbitmq
-    networks:
-      - network-service
 

@@ -1,0 +1,13 @@
+version: "3.7"
+services:
+  microservice1:
+    build:
+      dockerfile: MS1/Dockerfile
+    ports:
+      - "7001:7001"
+    networks:
+      - network-internal
+
+networks:
+    network-internal:
+        external: true

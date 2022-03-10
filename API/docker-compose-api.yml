@@ -1,0 +1,13 @@
+version: "3.7"
+services:
+  api:
+    build:
+      dockerfile: API/Dockerfile
+    ports:
+      - "7000:7000"
+    networks:
+      - network-internal
+
+networks:
+    network-internal:
+        external: true

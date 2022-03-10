@@ -1,0 +1,13 @@
+version: "3.7"
+services:
+  microservice2:
+    build:
+      dockerfile: MS2/Dockerfile
+    ports:
+      - "7002:7002"
+    networks:
+      - network-internal
+
+networks:
+    network-internal:
+        external: true
