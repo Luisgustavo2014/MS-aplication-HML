@@ -1,8 +1,7 @@
 version: "3.7"
 services:
   api:
-    build:
-      dockerfile: API/Dockerfile
+    build: .
     ports:
       - "7000:7000"
     networks:

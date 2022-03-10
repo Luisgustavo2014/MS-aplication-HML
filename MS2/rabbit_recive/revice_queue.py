@@ -29,7 +29,7 @@ class RabbitMqCreate():
         channel.start_consuming()
 
 
-if __name__ == '__main__':
+# if __name__ == '__main__':
 
-    RMQ = RabbitMqCreate()
-    RMQ.recive_queues()
+#     RMQ = RabbitMqCreate()
+#     RMQ.recive_queues()

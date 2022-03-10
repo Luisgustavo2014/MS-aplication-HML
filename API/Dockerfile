@@ -1,7 +1,6 @@
 FROM python:3.8-alpine
-COPY ./API/requirements.txt /app/requirements.txt
-COPY ./API/ /app/
-ENV HOST='144.22.139.197'
+COPY . /app/
+ENV HOST='10.0.0.34'
 WORKDIR /app
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
