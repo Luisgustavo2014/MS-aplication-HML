@@ -5,4 +5,4 @@ WORKDIR /app
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 RUN python server.py
-EXPOSE 7000
+docker 

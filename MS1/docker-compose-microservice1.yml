@@ -4,9 +4,9 @@ services:
     build: .
     ports:
       - "7001:7001"
-#     networks:
-#       - network-internal
+    networks:
+      - network-internal
 
-# networks:
-#     network-internal:
-#         external: true
+networks:
+    network-internal:
+        external: true

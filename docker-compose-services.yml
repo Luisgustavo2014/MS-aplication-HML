@@ -2,6 +2,7 @@ version: "3.7"
 networks:
   network-service:
     driver: bridge
+    name: network-internal
     ipam:
       config:
         - subnet: 10.5.0.0/16
