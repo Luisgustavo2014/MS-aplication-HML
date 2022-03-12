@@ -27,6 +27,31 @@ services:
       network-service:
         ipv4_address: 10.5.0.10
 
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: "pgadmin!"
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgres:/var/lib/postgresql/data 
+    networks:
+      network-service:
+        ipv4_address: 10.5.0.11
+    
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "pgadmin"
+      PGADMIN_DEFAULT_PASSWORD: "pgadmin!"
+    ports:
+      - "16543:80"
+    depends_on:
+      - postgres
+    networks:
+      network-service:
+        ipv4_address: 10.5.0.12
+
   redis:
     image: redis:alpine
     networks:
