@@ -19,8 +19,6 @@ services:
     ports:
       - "15672:15672"
       - "5672:5672"
-    expose:
-      - "5672"
     labels:
       NAME: "rabbitmq1"
     networks:
@@ -30,7 +28,8 @@ services:
   postgres:
     image: postgres
     environment:
-      POSTGRES_PASSWORD: "pgadmin!"
+      POSTGRES_USER: ${POSTGRES_USER:postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:potgres}
     ports:
       - "5432:5432"
     volumes:
@@ -42,8 +41,9 @@ services:
   pgadmin:
     image: dpage/pgadmin4
     environment:
-      PGADMIN_DEFAULT_EMAIL: "pgadmin"
-      PGADMIN_DEFAULT_PASSWORD: "pgadmin!"
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:patrickbpiccini@hotmail.com}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:admin}
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
     ports:
       - "16543:80"
     depends_on:
