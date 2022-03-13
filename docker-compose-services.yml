@@ -12,7 +12,6 @@ services:
   rabbitmq:
     image: "rabbitmq:3-management-alpine"
     environment:
-      # RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
       RABBITMQ_DEFAULT_USER: "guest"
       RABBITMQ_DEFAULT_PASS: "guest"
       RABBITMQ_DEFAULT_VHOST: "/"
