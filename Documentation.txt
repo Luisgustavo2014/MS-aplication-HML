@@ -1,0 +1,70 @@
+### OCI
+criar um Compartment Development
+Criar um user Developer - Senha@123
+Criar um grupo HML-Aplication
+
+Policy no compartment root
+Allow group HML-Aplication to manage all-resources in compartment Developmenmt
+allow group HML-Aplication to use cloud-shell in tenancy
+
+### CLOUD-SHELL
+>ssh-keygen
+copiar a chave de acesso
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCg4m22PWX8g5q7wgbMzBX4cXWi2pB3AEIAFIRisqadJzQ/1YVlq4aobqd+ZrCSaxpuM1RrPmUnvwi2q2a9L1x9khQwpn97mXSOHKzd22ogIHEtXfcp4Nlunpxj3HHChAcKwZkLsMoREkyd8GK1KzODECQ9VT5FBztqXSFPJ6BPp4HbqLdsWCwwzfOd43PWlxO/3m++1FVSg7lptu+JyG2lnrgEag04d+vGZuaVvChYmiEtNMPbtl32MAow1z8wzQQBkP2yNdiVUnR1SpS2E8lpfbE1z7TUI1O4FKt644NvY/PMMC7GETt7SYY3f5Mtv0g4hrddI3w0kHuugWmqEMyT developer@c444dbb38408
+
+###ADD PORTS OF INSTANCE
+Networking > Virtual Cloud Networks > YOUR_VCN > Security List Details
+rabbitmq web - 15672
+api - 7000
+ms1 - 7001
+ms2 - 7002
+
+###CONECT TO INSTANCE
+ssh opc@144.22.139.197
+
+### INSTALL DOCKER ON ORACLE LINUX 8
+https://oracle-base.com/articles/linux/docker-install-docker-on-oracle-linux-ol8
+https://techviewleo.com/install-docker-compose-on-oracle-linux/
+
+### INSTALL GIT ON ORACLE LINUX 8
+https://www.linuxsysadmins.com/install-git-in-centos-rhel-oracle-6-linux/
+
+###ORACLE DATABASE
+ADMIN - Senha@123456
+
+
+###FLASK API
+sentando o arquivo server como executor do server
+> set FLASK_APP=server
+
+###DOCKERFILE
+a o hosto do rabbit coloca o ip privado da vm, não precisa liberar a porta na vcn
+
+###RODAR DOCKER COMPOSE
+docker-compose -f docker-compose-service.yml up
+docker-compose -f docker-compose-api.yml up
+docker-compose -f docker-compose-microservice1.yml up
+docker-compose -f docker-compose-microservice1.yml up
+
+###ABRIR PORT NGROK PARA ACESSAR APLICAÇÃO
+docker run --rm -it --link awesome_kilby wernight/ngrok ngrok http awesome_kilby:7000
+
+
+###PGADMIN 
+cirar um arquivo baseapplication.db com as primeiras tabelase criar uma pasta /data!!!!!
+
+	user: patrickbpiccini@hotmail.com
+	senha: admin
+	
+	CONNECT DATABASE
+	nome: baseapplication
+	host: 10.5.0.11
+	port: 5432
+	maintenance: postgres
+	username: postgres
+	password: postgres
+
+
+
+
+
