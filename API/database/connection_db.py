@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS orders (
     user_id integer,
     item_description integer NOT NULL,
     item_quantity integer NOT NULL,
-    item_price ,
+    item_price integer NOT NULL,
     PRIMARY KEY (order_id),
     FOREIGN KEY(user_id) REFERENCES user(user_id)
 );'''
