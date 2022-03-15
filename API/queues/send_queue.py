@@ -4,11 +4,12 @@
 import pika
 import os
 
-HOST_RABBIT = os.environ['HOST']
+# HOST_RABBIT = os.environ['HOST']
+HOST_RABBIT = '144.22.139.197'
 
 class RabbitMqSend():
 
-    def send_msg_user(self, route, msg):
+    def send_msg(self, route, msg):
         try:
             print('[X] Connetcting server')
             connection = pika.BlockingConnection(
@@ -22,6 +23,7 @@ class RabbitMqSend():
 
         print("     [X] Sent 'Message'")
         connection.close()
+
 
 # if __name__ == '__main__':
 

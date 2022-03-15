@@ -1,16 +1,24 @@
 #!/usr/bin/python
 # -*- encoding: utf-8 -*-
 
-import pika
-import os
+import pika, os, json
+from pprint import pprint
+from database_controller.database_manipulation import PostrgesManipulation
 
 HOST_RABBIT = os.environ['HOST']
 
+
 class RabbitMqCreate():
 
-    def callback(self, ch, method, properties, body):
-        print(f" [X] Received {body}")
+    def __init__(self):
+        self.type_of=''
+        self.PSQL = PostrgesManipulation()
 
+    def callback(self, ch, method, properties, body):
+        self.type_of = json.loads(body)
+
+        self.database_manipulatio(self.type_of)
+        
     def recive_queues(self):
         try:
             print('[X] Connetcting RabbitMQ server')
@@ -27,6 +35,12 @@ class RabbitMqCreate():
 
         print(' [*] Waiting for messages. To exit press CTRL+C')
         channel.start_consuming()
+
+    def database_manipulatio(self, data):
+        data['type']
+
+        if data['type'] == 'crerate':
+            self.PSQL.insert_user(data)
 
 
 # if __name__ == '__main__':
