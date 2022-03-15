@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS orders (
     item_quantity integer NOT NULL,
     item_price integer NOT NULL,
     PRIMARY KEY (order_id),
-    FOREIGN KEY(user_id) REFERENCES user(user_id)
+    FOREIGN KEY(user_id) REFERENCES users(user_id)
 );'''
 
         self.cursor.execute(create_table_query)
