@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS users (
     name varchar(50) NOT NULL,
     cpf integer NOT NULL,
     email varchar(50) NOT NULL,
-    phone_number integer NOT NULL
+    phone_number integer NOT NULL,
     created_at varchar(50),
     updated_at varchar(50),
     PRIMARY KEY (user_id)
@@ -33,10 +33,10 @@ CREATE TABLE IF NOT EXISTS orders (
     order_id SERIAL NOT NULL,
     user_id integer,
     item_description integer NOT NULL,
-    item_quantity integer NOT NULL
+    item_quantity integer NOT NULL,
     item_price ,
     PRIMARY KEY (order_id),
-    FOREIGN KEY(user_id) REFERENCES user( user_id)
+    FOREIGN KEY(user_id) REFERENCES user(user_id)
 );'''
 
         self.cursor.execute(create_table_query)
