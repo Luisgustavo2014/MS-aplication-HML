@@ -5,7 +5,8 @@ import pika, os, json
 from pprint import pprint
 from database_controller.database_manipulation import PostrgesManipulation
 
-HOST_RABBIT = os.environ['HOST']
+# HOST_RABBIT = os.environ['HOST']
+HOST_RABBIT = '144.22.139.197'
 
 
 class RabbitMqCreate():
@@ -17,7 +18,7 @@ class RabbitMqCreate():
     def callback(self, ch, method, properties, body):
         self.type_of = json.loads(body)
 
-        self.database_manipulatio(self.type_of)
+        self.database_manipulation(self.type_of)
         
     def recive_queues(self):
         try:
@@ -33,13 +34,13 @@ class RabbitMqCreate():
         channel.basic_consume(
             queue='user', on_message_callback=self.callback, auto_ack=True)
 
-        print(' [*] Waiting for messages. To exit press CTRL+C')
+        print('     [*] Waiting for messages. To exit press CTRL+C')
         channel.start_consuming()
 
-    def database_manipulatio(self, data):
+    def database_manipulation(self, data):
         data['type']
 
-        if data['type'] == 'crerate':
+        if data['type'] == 'create':
             self.PSQL.insert_user(data)
 
 

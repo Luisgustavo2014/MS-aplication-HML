@@ -1,7 +1,8 @@
 import psycopg2
 import os
 
-HOST_DATABSE = os.environ['HOST_DATABASE']
+# HOST_DATABSE = os.environ['HOST_DATABASE']
+HOST_DATABSE = '144.22.139.197'
 
 class ConnectionDatabase():
 
@@ -22,12 +23,12 @@ class ConnectionDatabase():
         create_table_query = '''
             CREATE TABLE IF NOT EXISTS users (
                 user_id SERIAL NOT NULL,
-                name varchar(50) NOT NULL,
-                cpf integer NOT NULL,
+                _name varchar(50) NOT NULL,
+                cpf varchar(11) NOT NULL,
                 email varchar(50) NOT NULL,
-                phone_number integer NOT NULL,
-                created_at varchar(50),
-                updated_at varchar(50),
+                phone_number varchar(50) NOT NULL,
+                created_at TIMESTAMP,
+                updated_at TIMESTAMP,
                 PRIMARY KEY (user_id)
             );
 
