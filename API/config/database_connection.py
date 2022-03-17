@@ -7,22 +7,29 @@ HOST_DATABSE = '144.22.139.197'
 class ConnectionDatabase():
 
     def __init__(self):
-        self.connection  = psycopg2.connect(
-            host=HOST_DATABSE,
-            port=5432,
-            database="baseapplication",
-            user="postgres",
-            password="postgres")
-        self.cursor = self.connection.cursor()
+        try:
+            self.connection  = psycopg2.connect(
+                host=HOST_DATABSE,
+                port=5432,
+                database="baseapplication",
+                user="postgres",
+                password="postgres")
+            self.cursor = self.connection.cursor()
+            # start tables
+            self.create_tables()
+            print('[✓] Connected to Postgres')
+        except Exception as error:
+            print(f'[X] CONNECTING POSTGRES ERROR: {error}')
     
     def create_tables(self):
         self.cursor.execute("SELECT version();")
         record = self.cursor.fetchone()
-        print("[X] You are connected to - ", record, "\n")
+        print("[✓] You are connected to - ", record)
 
         create_table_query = '''
             CREATE TABLE IF NOT EXISTS users (
                 user_id SERIAL NOT NULL,
+                password varchar(50) NOT NULL,
                 _name varchar(50) NOT NULL,
                 cpf varchar(11) NOT NULL,
                 email varchar(50) NOT NULL,
@@ -44,6 +51,6 @@ class ConnectionDatabase():
         
         self.cursor.execute(create_table_query)
         self.connection.commit()
-        print('[X] Created tables on DataBase \n')
+        print('[✓] Created tables on DataBase')
 
         

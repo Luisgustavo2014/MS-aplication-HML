@@ -1,18 +1,27 @@
-from rabbit_recive.revice_queue import RabbitMqCreate
-from database_controller.database_manipulation import PostrgesManipulation
+#!/usr/bin/python
+# -*- encoding: utf-8 -*-
+
+from config.database_connection import ConnectionDatabase
+from config.rabbitmq_connection import ConnectionRabbitMq
+from rabbitmq_controller.rabbit_worker import RabbitWorker
+
 
 class Main():
 
     def __init__(self):
-        self.RMQ = RabbitMqCreate()
-        self.PSQL = PostrgesManipulation()
+        self.PSQL = ConnectionDatabase()
+        self.RMQ = ConnectionRabbitMq()
+        self.RMQ_WORKER = RabbitWorker()
 
-    def initialize_services(self):
-        self.PSQL.select_version()
-        self.RMQ.recive_queues()
-        
+    def consume_queue(self):
+        self.RMQ.channel.basic_consume(
+            queue='database.user', on_message_callback=self.RMQ_WORKER.callback, auto_ack=True)
+
+        print('     [⇄] Waiting for messages. To exit press CTRL+C')
+        self.RMQ.channel.start_consuming()
+
 
 if __name__ == '__main__':
 
     MA = Main()
-    MA.initialize_services()
+    MA.consume_queue()
