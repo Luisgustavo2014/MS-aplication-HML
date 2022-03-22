@@ -3,20 +3,16 @@
 
 import json
 from flask import Flask, request
-from queues.send_queue import RabbitMqSend
 from config.database_connection import ConnectionDatabase
 from config.rabbitmq_connection import RabbitConnection
 
-rabbit_queues = RabbitMqSend()
+rabbit_queues = RabbitConnection()
 
 class Api_server():
-
-    def __init__(self):
-        pass
     
     app = Flask(__name__)
     ConnectionDatabase()
-    RabbitConnection().create_queues()
+    rabbit_queues.create_queues()
 
     # User Routes
 
@@ -25,8 +21,12 @@ class Api_server():
         if request.method == 'POST':
             imput_msg = request.get_json()
             imput_msg['type']='create'
-            rabbit_queues.send_msg(route="database.user", msg=json.dumps(imput_msg))
-            return {'Status': 200, 'Message': 'Send to queue user -> create'}
+            
+            rabbit_return = rabbit_queues.send_msg(
+                data=json.dumps(imput_msg),
+                route="user")
+            
+            return {'Status': 200, 'Message': json.loads(rabbit_return)}
         else:
             return {'Status': 404, 'Message': 'Erro no envio do method'}
 
@@ -63,7 +63,7 @@ class Api_server():
     def create_order():
         if request.method == 'POST':
             imput_msg = request.get_json()
-            rabbit_queues.send_msg(route="database.order", msg=imput_msg)
+            rabbit_queues.send_msg(route="order", msg=imput_msg)
 
             return {'Status': 200, 'Message': imput_msg}
         else:
