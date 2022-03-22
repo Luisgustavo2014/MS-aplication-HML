@@ -47,7 +47,14 @@ class Api_server():
     @app.route("/user/edit_user/", methods=['POST'])
     def edit_user():
         if request.method == 'POST':
-            return {'Status': 200, 'Message': 'bem vindo'}
+            imput_msg = request.get_json()
+            imput_msg['type']='update'
+            
+            rabbit_return = rabbit_queues.send_msg(
+                data=json.dumps(imput_msg),
+                route="user")
+            
+            return {'Status': 200, 'Message': json.loads(rabbit_return)}
         else:
             return {'Status': 404, 'Message': 'Erro no envio do method'}
 

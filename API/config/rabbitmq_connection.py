@@ -14,13 +14,6 @@ class RabbitConnection():
                 pika.ConnectionParameters(host=HOST_RABBIT, port=5672))
             self.channel = self.connection.channel()
             print('[✓] Connected to RabbitMQ server')
-
-            # self.result = self.channel.queue_declare(queue='', exclusive=True)
-            # self.callback_queue = self.result.method.queue
-            # self.channel.basic_consume(
-            #     queue=self.callback_queue,
-            #     on_message_callback=self.on_response,
-            #     auto_ack=True)
             
         except Exception as error:
             print(f'[X] CONNECTING RABBIT MQ ERROR: {error}')

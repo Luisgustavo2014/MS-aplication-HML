@@ -13,7 +13,7 @@ class RabbitWorker():
 
     def callback(self, ch, method, props, body):
         self.data = json.loads(body)
-
+        
         response_work = self.database_manipulation(self.data)
 
         ch.basic_publish(exchange='',
@@ -27,11 +27,10 @@ class RabbitWorker():
     def database_manipulation(self, data):
         # start connection whit postgres
         psql = PostgresWorker()
-        print(data)
         if data['type'] == 'create':
             return psql.insert_user(data)
         elif data['type'] == 'update':
-            pass
+            return psql.alter_user(data)
 
 # if __name__ == '__main__':
 
