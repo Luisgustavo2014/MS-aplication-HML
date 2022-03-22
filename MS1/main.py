@@ -14,12 +14,14 @@ class Main():
         self.RMQ_WORKER = RabbitWorker()
 
     def consume_queue(self):
-        self.RMQ.channel.basic_consume(
-            queue='database.user', on_message_callback=self.RMQ_WORKER.callback, auto_ack=True)
+        self.RMQ.channel.basic_qos(prefetch_count=1)
+        self.RMQ.channel.basic_consume(queue='user', on_message_callback=self.RMQ_WORKER.callback)
 
+        
         print('     [⇄] Waiting for messages. To exit press CTRL+C')
         self.RMQ.channel.start_consuming()
-
+        
+        
 
 if __name__ == '__main__':
 

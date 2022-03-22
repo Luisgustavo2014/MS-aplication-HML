@@ -17,8 +17,11 @@ class PostgresWorker():
       vars_query = (data['name'],data['password'],data['cpf'],data['email'],data['phone_number'],date_time_formate,date_time_formate)
       self.PSQL.cursor.execute(query_insert, vars_query)
       self.PSQL.connection.commit()
+      self.PSQL.cursor.close()
 
       print('[X] INSERTION DONE IN POSTGRES!')
-      self.PSQL.cursor.close()
+      return {'Message':'usuario criado com sucesso!'}
+
+      
 
     
