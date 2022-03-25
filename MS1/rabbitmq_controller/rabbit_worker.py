@@ -31,9 +31,9 @@ class RabbitWorker():
         elif data['type'] == 'update':
             return psql.alter_user(data)
         elif data['type'] == 'all_user':
-            return psql.all_user()
+            return psql.show_all_user()
         elif data['type'] == 'show_user':
-            return psql.show_user(data)
+            return psql.show_one_user(data)
         elif data['type'] == 'delete_user':
             return psql.delete_user(data)
 # if __name__ == '__main__':

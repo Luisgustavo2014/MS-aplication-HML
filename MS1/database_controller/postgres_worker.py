@@ -63,7 +63,7 @@ class PostgresWorker():
         {error}'
     
     # Show all user on batabase
-    def all_user(self):
+    def show_all_user(self):
       try:
         sql_select_query = 'SELECT * FROM users'
         self.PSQL.cursor.execute(sql_select_query)
@@ -92,7 +92,7 @@ class PostgresWorker():
         {error}'
 
     # Show a user on database
-    def show_user(self, data):
+    def show_one_user(self, data):
       try:
         sql_select_query = 'SELECT * FROM users WHERE nick_name=%s'
         vars_query_select= data['nick_name']
