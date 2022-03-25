@@ -32,10 +32,10 @@ class Api_server():
         else:
             return {'Status': 404, 'Message': 'Erro no envio do method'}
 
-    @app.route("/user/list_user/", methods=['GET'])
+    @app.route("/user/show_all_user/", methods=['GET'])
     def list_user():
         if request.method == 'GET':
-            imput_msg={'type':'all_user'}
+            imput_msg={'type':'show_all'}
             
             rabbit_return = rabbit_queues.send_msg(
                 data=json.dumps(imput_msg),
@@ -45,11 +45,11 @@ class Api_server():
         else:
             return {'Status': 404, 'Message': 'Erro no envio do method'}
 
-    @app.route("/user/show_user/", methods=['POST'])
+    @app.route("/user/show_one_user/", methods=['POST'])
     def show_user():
         if request.method == 'POST':
             imput_msg = request.get_json()
-            imput_msg['type']='show_user'
+            imput_msg['type']='show_one'
             
             rabbit_return = rabbit_queues.send_msg(
                 data=json.dumps(imput_msg),

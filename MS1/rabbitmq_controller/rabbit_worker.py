@@ -30,9 +30,9 @@ class RabbitWorker():
             return psql.insert_user(data)
         elif data['type'] == 'update':
             return psql.alter_user(data)
-        elif data['type'] == 'all_user':
+        elif data['type'] == 'show_all':
             return psql.show_all_user()
-        elif data['type'] == 'show_user':
+        elif data['type'] == 'show_one':
             return psql.show_one_user(data)
         elif data['type'] == 'delete_user':
             return psql.delete_user(data)
