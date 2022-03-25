@@ -5,17 +5,19 @@ import json
 from flask import Flask, request
 from config.database_connection import ConnectionDatabase
 from config.rabbitmq_connection import RabbitConnection
+from rabbitmq_controller.rabbit_queues import RabbitQueue
 
-rabbit_queues = RabbitConnection()
+
+rabbit_queues = RabbitQueue()
 
 class Api_server():
     
     app = Flask(__name__)
     ConnectionDatabase()
+    RabbitConnection()
     rabbit_queues.create_queues()
 
-    # User Routes
-
+    # ---------------User Routes----------------
     @app.route("/user/create_user/", methods=['POST'])
     def create_user():
         if request.method == 'POST':
@@ -33,20 +35,33 @@ class Api_server():
     @app.route("/user/list_user/", methods=['GET'])
     def list_user():
         if request.method == 'GET':
-            return {'Status': 200, 'Message': 'bem vindo'}
+            imput_msg={'type':'all_user'}
+            
+            rabbit_return = rabbit_queues.send_msg(
+                data=json.dumps(imput_msg),
+                route="user")
+            
+            return {'Status': 200, 'Message': json.loads(rabbit_return)}
         else:
             return {'Status': 404, 'Message': 'Erro no envio do method'}
 
-    @app.route("/user/display_user/", methods=['GET'])
-    def display_user():
-        if request.method == 'GET':
-            return {'Status': 200, 'Message': 'bem vindo'}
+    @app.route("/user/show_user/", methods=['POST'])
+    def show_user():
+        if request.method == 'POST':
+            imput_msg = request.get_json()
+            imput_msg['type']='show_user'
+            
+            rabbit_return = rabbit_queues.send_msg(
+                data=json.dumps(imput_msg),
+                route="user")
+            
+            return {'Status': 200, 'Message': json.loads(rabbit_return)}
         else:
             return {'Status': 404, 'Message': 'Erro no envio do method'}
 
     @app.route("/user/edit_user/", methods=['POST'])
     def edit_user():
-        if request.method == 'POST':
+        if request.method == 'POST': 
             imput_msg = request.get_json()
             imput_msg['type']='update'
             
@@ -61,11 +76,20 @@ class Api_server():
     @app.route("/user/delete_user/", methods=['DELETE'])
     def delete_user():
         if request.method == 'DELETE':
-            return {'Status': 200, 'Message': 'bem vindo'}
+            imput_msg = request.get_json()
+            imput_msg['type']='delete_user'
+            
+            rabbit_return = rabbit_queues.send_msg(
+                data=json.dumps(imput_msg),
+                route="user")
+
+            return {'Status': 200, 'Message': json.loads(rabbit_return)}
         else:
             return {'Status': 404, 'Message': 'Erro no envio do method'}
 
-    # Order Routes
+
+
+    # -----------------Order Routes-----------------
     @app.route("/order/create_order/", methods=['POST'])
     def create_order():
         if request.method == 'POST':

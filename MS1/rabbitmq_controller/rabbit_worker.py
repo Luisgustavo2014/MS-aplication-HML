@@ -13,7 +13,6 @@ class RabbitWorker():
 
     def callback(self, ch, method, props, body):
         self.data = json.loads(body)
-        
         response_work = self.database_manipulation(self.data)
 
         ch.basic_publish(exchange='',
@@ -31,7 +30,12 @@ class RabbitWorker():
             return psql.insert_user(data)
         elif data['type'] == 'update':
             return psql.alter_user(data)
-
+        elif data['type'] == 'all_user':
+            return psql.all_user()
+        elif data['type'] == 'show_user':
+            return psql.show_user(data)
+        elif data['type'] == 'delete_user':
+            return psql.delete_user(data)
 # if __name__ == '__main__':
 
 #     RMQ = RabbitMqCreate()
