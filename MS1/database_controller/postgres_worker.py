@@ -70,22 +70,22 @@ class PostgresWorker():
         record = self.PSQL.cursor.fetchall()
         self.PSQL.connection.commit()
 
-        dict_all_users = {'user0':''}
+        dict_all_users = []
         for index in range(len(record)):
           dict_response = {
-            f'user{index}':{
               'nick_name': record[index][1],
               'name':record[index][3],
               'email':record[index][5],
               'phone_number':record[index][6],
               'created_at':str(record[index][7]),
               'updated_at':str(record[index][8])
-            }
+            
           }
-          dict_all_users.update(dict_response,)
+          dict_all_users.append(dict_response)
+        
         self.PSQL.cursor.close()
         print('[✓] SELECT DONE SUCCESSFULLY IN POSTGRES!')
-        return dict_all_users
+        return {'users':dict_all_users}
       except Exception as error:
         print(error)
         return f'[X] ERROR ON SELECT IN POSTGRES! \
@@ -98,7 +98,6 @@ class PostgresWorker():
         vars_query_select= data['nick_name']
         self.PSQL.cursor.execute(sql_select_query, (vars_query_select,))
         record = self.PSQL.cursor.fetchone()
-        self.PSQL.cursor.close()
         dict_response = {
           'nick_name': record[1],
           'name':record[3],
@@ -122,6 +121,7 @@ class PostgresWorker():
         vars_query_select= data['nick_name']
         self.PSQL.cursor.execute(sql_delete_query, (vars_query_select,))
         row_count = self.PSQL.cursor.rowcount
+        self.PSQL.connection.commit()
         self.PSQL.cursor.close()
 
         print('[✓] DELETE DONE SUCCESSFULLY IN POSTGRES!')
