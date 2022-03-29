@@ -59,9 +59,9 @@ class Api_server():
         else:
             return {'Status': 404, 'Message': 'Erro no envio do method'}
 
-    @app.route("/user/edit_user/", methods=['POST'])
+    @app.route("/user/edit_user/", methods=['PUT'])
     def edit_user():
-        if request.method == 'POST': 
+        if request.method == 'PUT': 
             imput_msg = request.get_json()
             imput_msg['type']='update'
             
@@ -72,6 +72,21 @@ class Api_server():
             return {'Status': 200, 'Message': json.loads(rabbit_return)}
         else:
             return {'Status': 404, 'Message': 'Erro no envio do method'}
+
+    @app.route("/user/edit_password/", methods=['PUT'])
+    def edit_password():
+        if request.method == 'PUT': 
+            imput_msg = request.get_json()
+            imput_msg['type']='update_password'
+            
+            rabbit_return = rabbit_queues.send_msg(
+                data=json.dumps(imput_msg),
+                route="user")
+            
+            return {'Status': 200, 'Message': json.loads(rabbit_return)}
+        else:
+            return {'Status': 404, 'Message': 'Erro no envio do method'}
+
 
     @app.route("/user/delete_user/", methods=['DELETE'])
     def delete_user():

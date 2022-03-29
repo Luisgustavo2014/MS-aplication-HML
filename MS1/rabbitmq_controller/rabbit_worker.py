@@ -5,7 +5,6 @@ import json, pika
 
 from database_controller.postgres_worker import PostgresWorker
 
-
 class RabbitWorker():
 
     def __init__(self):
@@ -30,12 +29,15 @@ class RabbitWorker():
             return psql.insert_user(data)
         elif data['type'] == 'update':
             return psql.alter_user(data)
+        elif data['type'] == 'update_password':
+            return psql.alter_password(data)
         elif data['type'] == 'show_all':
             return psql.show_all_user()
         elif data['type'] == 'show_one':
             return psql.show_one_user(data)
         elif data['type'] == 'delete_user':
             return psql.delete_user(data)
+
 # if __name__ == '__main__':
 
 #     RMQ = RabbitMqCreate()

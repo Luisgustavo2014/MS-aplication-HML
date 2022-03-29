@@ -30,7 +30,7 @@ class ConnectionDatabase():
             CREATE TABLE IF NOT EXISTS users (
                 user_id SERIAL NOT NULL,
                 nick_name varchar(50) UNIQUE NOT NULL,
-                password varchar(50) NOT NULL,
+                password varchar(256) NOT NULL,
                 _name varchar(50) NOT NULL,
                 cpf varchar(11) NOT NULL,
                 email varchar(50) NOT NULL,
