@@ -10,7 +10,7 @@ class ConnectionRabbitMq():
     def __init__(self):
         try:
             self.connection = pika.BlockingConnection(
-                pika.ConnectionParameters(host=HOST_RABBIT, port=5672))
+                pika.ConnectionParameters(host=HOST_RABBIT, port=5672, heartbeat=10))
             self.channel = self.connection.channel()
             print('[✓] Conected to RabbitMQ server')
 

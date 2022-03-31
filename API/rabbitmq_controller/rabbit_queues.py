@@ -11,6 +11,7 @@ class RabbitQueue():
     def __init__(self) :
         self.RMQ = RabbitConnection()
 
+
     def on_response(self, ch, method, props, body):
         if self.corr_id == props.correlation_id:
             self.response = body
@@ -38,7 +39,7 @@ class RabbitQueue():
         print("     [✓] Sent 'Message'")
         while self.response is None:
             self.RMQ.connection.process_data_events(time_limit=0)
-        time.sleep(5)
+        # time.sleep(5)
         self.RMQ.channel.queue_delete(queue=self.callback_queue)
         return self.response
         

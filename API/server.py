@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- encoding: utf-8 -*-
 
-import json
+import json, threading
 from flask import Flask, request
 from config.database_connection import ConnectionDatabase
 from config.rabbitmq_connection import RabbitConnection
@@ -11,7 +11,7 @@ from rabbitmq_controller.rabbit_queues import RabbitQueue
 rabbit_queues = RabbitQueue()
 
 class Api_server():
-    
+    queue = {}
     app = Flask(__name__)
     ConnectionDatabase()
     RabbitConnection()

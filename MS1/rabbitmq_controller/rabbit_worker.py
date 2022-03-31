@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- encoding: utf-8 -*-
 
-import json, pika
+import json, pika, asyncio
 
 from database_controller.postgres_worker import PostgresWorker
 
