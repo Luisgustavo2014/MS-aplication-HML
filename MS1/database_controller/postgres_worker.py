@@ -1,4 +1,3 @@
-from socket import errorTab
 import psycopg2
 
 from config.database_connection import ConnectionDatabase
@@ -28,8 +27,7 @@ class PostgresWorker():
             return '[✓] User created successfully! '
         except Exception as error:
             print(error)
-            return f'[X] ERROR INSERTING IN POSTGRES! \
-        {error}'
+            return f'[X] ERROR INSERTING IN POSTGRES! {error}'
         finally:
             self.PSQL.cursor.close()
 
@@ -51,6 +49,9 @@ class PostgresWorker():
             row_count = self.PSQL.cursor.rowcount
             record = self.information_user(data['nick_name'])
 
+            if record == None:
+                return record
+
             dict_response = {
                 'Altered Lines': row_count,
                 'nick_name': record[1],
@@ -66,8 +67,7 @@ class PostgresWorker():
             return dict_response
         except Exception as error:
             print(error)
-            return f'[X] ERROR IN UPDATED USER INFORMATION IN POSTGRES! \
-        {error}'
+            return f'[X] ERROR IN UPDATED USER INFORMATION IN POSTGRES! {error}'
         finally:
             self.PSQL.cursor.close()
 
@@ -92,8 +92,7 @@ class PostgresWorker():
             return {'Altered Lines': row_count, "Password": 'Update password successfully!'}
         except Exception as error:
             print(error)
-            return f'[X] ERROR IN UPDATED USER PASSWORD INFORMATION IN POSTGRES! \
-        {error}'
+            return f'[X] ERROR IN UPDATED USER PASSWORD INFORMATION IN POSTGRES! {error}'
         finally:
             self.PSQL.cursor.close()
 
@@ -122,8 +121,7 @@ class PostgresWorker():
             return {'users': dict_all_users}
         except Exception as error:
             print(error)
-            return f'[X] ERROR ON SELECT IN POSTGRES! \
-        {error}'
+            return f'[X] ERROR ON SELECT IN POSTGRES! {error}'
         finally:
             self.PSQL.cursor.close()
 
@@ -147,14 +145,20 @@ class PostgresWorker():
             return dict_response
         except Exception as error:
             print(error)
-            return f'[X] ERROR ON SELECT IN POSTGRES! \
-        {error}'
+            return f'[X] ERROR ON SELECT IN POSTGRES! {error}'
         finally:
             self.PSQL.cursor.close()
 
     # Delete a user on database
     def delete_user(self, data):
         try:
+            result_psw = self.take_pass(data['nick_name'])
+            verify = self.verify_password_database(
+                result_psw, data['password'])
+
+            if verify == False:
+                return f'[X] PASSWORD NOT EQUAL!'
+
             sql_delete_query = 'DELETE FROM users WHERE nick_name=%s'
             vars_query_select = data['nick_name']
             self.PSQL.cursor.execute(sql_delete_query, (vars_query_select,))
@@ -165,8 +169,7 @@ class PostgresWorker():
             return {'Altered Lines': row_count}
         except Exception as error:
             print(error)
-            return f'[X] ERROR ON DELETE IN POSTGRES! \
-        {error}'
+            return f'[X] ERROR ON DELETE IN POSTGRES! {error}'
         finally:
             self.PSQL.cursor.close()
 
@@ -185,7 +188,7 @@ class PostgresWorker():
         finally:
             self.PSQL.cursor.close()
 
-    # get the user's password 
+    # get the user's password
     def take_pass(self, data):
         try:
             sql_select_query = 'SELECT password FROM users WHERE nick_name=%s'
@@ -196,8 +199,7 @@ class PostgresWorker():
             return record
         except Exception as error:
             print(error)
-            return f'[X] ERROR SELECT PASSWORD! \
-        {error}'
+            return f'[X] ERROR SELECT PASSWORD! {error}'
 
     # Checks input user password with built-in user password
     def verify_password_database(self, db_password, new_pass):

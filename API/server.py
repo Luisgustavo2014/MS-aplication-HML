@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- encoding: utf-8 -*-
 
-import json, threading
+import json, time
 from flask import Flask, request
 from config.database_connection import ConnectionDatabase
 from config.rabbitmq_connection import RabbitConnection
@@ -11,79 +11,92 @@ from rabbitmq_controller.rabbit_queues import RabbitQueue
 rabbit_queues = RabbitQueue()
 
 class Api_server():
-    queue = {}
     app = Flask(__name__)
     ConnectionDatabase()
-    RabbitConnection()
     rabbit_queues.create_queues()
+    
+    # ---------------Test Route----------------
+    @app.route("/test/", methods=['POST'])
+    def test():
+        if request.method == 'POST':
+            payload = request.get_json()
+            payload['type']='create'
+
+            corr_id = rabbit_queues.rpc_async(json.dumps(payload),"user")
+            while rabbit_queues.queue[corr_id] is None:
+                time.sleep(0.1)
+            
+            return {'Status': 200, 'Message': json.loads(rabbit_queues.queue[corr_id])}
+        else:
+            return {'Status': 404, 'Message': 'Erro no envio do method'}
 
     # ---------------User Routes----------------
     @app.route("/user/create_user/", methods=['POST'])
     def create_user():
         if request.method == 'POST':
-            imput_msg = request.get_json()
-            imput_msg['type']='create'
+            payload = request.get_json()
+            payload['type']='create'
             
-            rabbit_return = rabbit_queues.send_msg(
-                data=json.dumps(imput_msg),
-                route="user")
+            corr_id = rabbit_queues.rpc_async(json.dumps(payload),"user")
+            while rabbit_queues.queue[corr_id] is None:
+                time.sleep(0.1)
             
-            return {'Status': 200, 'Message': json.loads(rabbit_return)}
+            return {'Status': 200, 'Message': json.loads(rabbit_queues.queue[corr_id])}
         else:
             return {'Status': 404, 'Message': 'Erro no envio do method'}
 
     @app.route("/user/show_all_user/", methods=['GET'])
     def list_user():
         if request.method == 'GET':
-            imput_msg={'type':'show_all'}
+            payload={'type':'show_all'}
             
-            rabbit_return = rabbit_queues.send_msg(
-                data=json.dumps(imput_msg),
-                route="user")
+            corr_id = rabbit_queues.rpc_async(json.dumps(payload),"user")
+            while rabbit_queues.queue[corr_id] is None:
+                time.sleep(0.1)
             
-            return {'Status': 200, 'Message': json.loads(rabbit_return)}
+            return {'Status': 200, 'Message': json.loads(rabbit_queues.queue[corr_id])}
         else:
             return {'Status': 404, 'Message': 'Erro no envio do method'}
 
     @app.route("/user/show_one_user/", methods=['POST'])
     def show_user():
         if request.method == 'POST':
-            imput_msg = request.get_json()
-            imput_msg['type']='show_one'
+            payload = request.get_json()
+            payload['type']='show_one'
             
-            rabbit_return = rabbit_queues.send_msg(
-                data=json.dumps(imput_msg),
-                route="user")
+            corr_id = rabbit_queues.rpc_async(json.dumps(payload),"user")
+            while rabbit_queues.queue[corr_id] is None:
+                time.sleep(0.1)
             
-            return {'Status': 200, 'Message': json.loads(rabbit_return)}
+            return {'Status': 200, 'Message': json.loads(rabbit_queues.queue[corr_id])}
         else:
             return {'Status': 404, 'Message': 'Erro no envio do method'}
 
     @app.route("/user/edit_user/", methods=['PUT'])
     def edit_user():
         if request.method == 'PUT': 
-            imput_msg = request.get_json()
-            imput_msg['type']='update'
+            payload = request.get_json()
+            payload['type']='update'
             
-            rabbit_return = rabbit_queues.send_msg(
-                data=json.dumps(imput_msg),
-                route="user")
+            corr_id = rabbit_queues.rpc_async(json.dumps(payload),"user")
+            while rabbit_queues.queue[corr_id] is None:
+                time.sleep(0.1)
             
-            return {'Status': 200, 'Message': json.loads(rabbit_return)}
+            return {'Status': 200, 'Message': json.loads(rabbit_queues.queue[corr_id])}
         else:
             return {'Status': 404, 'Message': 'Erro no envio do method'}
 
     @app.route("/user/edit_password/", methods=['PUT'])
     def edit_password():
         if request.method == 'PUT': 
-            imput_msg = request.get_json()
-            imput_msg['type']='update_password'
+            payload = request.get_json()
+            payload['type']='update_password'
             
-            rabbit_return = rabbit_queues.send_msg(
-                data=json.dumps(imput_msg),
-                route="user")
+            corr_id = rabbit_queues.rpc_async(json.dumps(payload),"user")
+            while rabbit_queues.queue[corr_id] is None:
+                time.sleep(0.1)
             
-            return {'Status': 200, 'Message': json.loads(rabbit_return)}
+            return {'Status': 200, 'Message': json.loads(rabbit_queues.queue[corr_id])}
         else:
             return {'Status': 404, 'Message': 'Erro no envio do method'}
 
@@ -91,14 +104,14 @@ class Api_server():
     @app.route("/user/delete_user/", methods=['DELETE'])
     def delete_user():
         if request.method == 'DELETE':
-            imput_msg = request.get_json()
-            imput_msg['type']='delete_user'
+            payload = request.get_json()
+            payload['type']='delete_user'
             
-            rabbit_return = rabbit_queues.send_msg(
-                data=json.dumps(imput_msg),
-                route="user")
-
-            return {'Status': 200, 'Message': json.loads(rabbit_return)}
+            corr_id = rabbit_queues.rpc_async(json.dumps(payload),"user")
+            while rabbit_queues.queue[corr_id] is None:
+                time.sleep(0.1)
+            
+            return {'Status': 200, 'Message': json.loads(rabbit_queues.queue[corr_id])}
         else:
             return {'Status': 404, 'Message': 'Erro no envio do method'}
 
