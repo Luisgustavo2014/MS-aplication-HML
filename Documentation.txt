@@ -65,6 +65,5 @@ cirar um arquivo baseapplication.db com as primeiras tabelase criar uma pasta /d
 	password: postgres
 
 
-
-
-
+###Redis
+https://levelup.gitconnected.com/implement-api-caching-with-redis-flask-and-docker-step-by-step-9139636cef24

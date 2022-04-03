@@ -1,4 +1,5 @@
 flask
+Flask-Caching
 pika
 psycopg2-binary
 uuid
