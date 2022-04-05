@@ -1,0 +1,4 @@
+## Fila no Rabbit
+
+** Exemplo de como funciona a fila 
+** Criar um exemplo de fila simples
