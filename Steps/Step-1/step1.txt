@@ -1,0 +1,33 @@
+## Criação de infraestrutura do OCI ##
+
+** Criar um Compartment Development
+    > Identity & Security > compartments 
+
+** Criar um user Devel_user - Senha@123
+    > Identity & Security > users 
+    # após isso resetar a senha
+
+** Criar um grupo HML-Aplication
+    > Identity & Security > group 
+    #adicionar o user_teste
+
+** Adicionar a policy no grupo
+    > Identity & Security > policy 
+    # criar a policy no compartment root
+
+    Allow group NOME_DO_GRUPO to manage all-resources in compartment COMPARTMET
+    Allow group NOME_DO_GRUPO to use cloud-shell in tenancy
+
+** Entrar no usuario que foi criado na OCI e gerar uma nova sshkey e colar juntamente com a sshkey do meu computador
+
+** Abrir o cloud shell pelo usuario criado e criar ssh_keygen
+    > ssh-keygen (salvar a key pra criar a instancia posteriormente)
+    > cat /home/patrick-lnx/.ssh/id_rsa.pub
+    ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDpC0LrrVooDTRFj1Vnyt4jiqSQk2IFTHUNZ/8rOzkBcdfUlFrABXJkOJhtFP60+xbm2W3NJosSLYVGMkmdRgIPlSGJShG8eqwiM7ifiKv4F7THN+96crVqF0XpwQ5lJtWR0kUjlfvr4LA+kVcx3Bwb5RXr81aMesLq8HzDDhyVqc3ZYICNuILnjTHlgDdhA4LFselgrK/7hrZnDSp00fMsR+9Yli5N6rX/r5C4fPYnKiv8rjuPZ4NykxpTUlD6nReiQca9nehZQcEGYbAZow02fljPT6eHe9/xKO2tVVek/avDAQL1pUEM3M5mnvCXlDokqJZYMvR+6DDXbZ9Lr0DrTSuW76FdT5Fjy5v2ZMV5PY7pLUC0/Q5RDpljjp5HbTLdi8scI4rLFc2paOjV4jo0EPnRyAU3opPZpmk+oSVK288T88JQR8u/7eu8LL5td0FXUPcp/jY0bUAKA4pNLhsAxWv2mgRjWIvbMH3643leTBVu0yjIZ3x77/icvxd9bJ8= patrick-lnx@Patrick-Piccini
+
+** criar instancia
+    > compute > instances > create instance
+    # Add SSH keys - adicionar a ssh_key salva anteriormente
+    # Add SSH keys - adicionar a ssh_key do usuario OCI
+
+

@@ -1,0 +1,15 @@
+# Criação da API usando Flask
+
+** Criar esses arquivos
+API
+  ↳ docker-compose-api.yml
+  ↳ Dockerfile
+  ↳ requirements.txt
+  ↳ server.py
+
+- Explicar das Librarys e que será sómente utilizado no momentos o 'Flask'
+- Explicar como funciona o sistema de rotas no Flask;
+- A função que esta em baixo é chamada quando a rota recebe um request;
+- Explicar o app.run('0.0.0.0', 7000)
+- Fazer um teste de requisição no insomina
+

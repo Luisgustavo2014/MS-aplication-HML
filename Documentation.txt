@@ -9,6 +9,7 @@ allow group HML-Aplication to use cloud-shell in tenancy
 
 ### CLOUD-SHELL
 >ssh-keygen
+
 copiar a chave de acesso
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCg4m22PWX8g5q7wgbMzBX4cXWi2pB3AEIAFIRisqadJzQ/1YVlq4aobqd+ZrCSaxpuM1RrPmUnvwi2q2a9L1x9khQwpn97mXSOHKzd22ogIHEtXfcp4Nlunpxj3HHChAcKwZkLsMoREkyd8GK1KzODECQ9VT5FBztqXSFPJ6BPp4HbqLdsWCwwzfOd43PWlxO/3m++1FVSg7lptu+JyG2lnrgEag04d+vGZuaVvChYmiEtNMPbtl32MAow1z8wzQQBkP2yNdiVUnR1SpS2E8lpfbE1z7TUI1O4FKt644NvY/PMMC7GETt7SYY3f5Mtv0g4hrddI3w0kHuugWmqEMyT developer@c444dbb38408
 
@@ -16,8 +17,7 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCg4m22PWX8g5q7wgbMzBX4cXWi2pB3AEIAFIRisqad
 Networking > Virtual Cloud Networks > YOUR_VCN > Security List Details
 rabbitmq web - 15672
 api - 7000
-ms1 - 7001
-ms2 - 7002
+
 
 ###CONECT TO INSTANCE
 ssh opc@144.22.139.197

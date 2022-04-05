@@ -4,7 +4,7 @@
 import pika, uuid, time
 
 # HOST_RABBIT = os.environ['HOST']
-HOST_RABBIT = '144.22.139.197'
+HOST_RABBIT = '144.22.193.219'
 
 class RabbitConnection():
 

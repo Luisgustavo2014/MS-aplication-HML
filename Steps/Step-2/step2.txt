@@ -1,0 +1,29 @@
+## Criação de infraestrutura do OCI ##
+
+** Entre como usuario root
+    > sudo su -
+
+** Fazer os passos da doculemtação para instalação de DOCKER
+https://oracle-base.com/articles/linux/docker-install-docker-on-oracle-linux-ol8
+
+** Fazer os passos da doculemtação para instalação de DOCKER-COMPOSE
+https://techviewleo.com/install-docker-compose-on-oracle-linux/
+
+** Fazer os passos da doculemtação para instalação de GIT
+https://www.linuxsysadmins.com/install-git-in-centos-rhel-oracle-6-linux/
+
+> yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel -y
+> yum install gcc perl-ExtUtils-MakeMaker -y
+> cd /usr/local/
+> wget https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.35.1.tar.gz
+> tar zxvf git-2.35.1.tar.gz
+> cd git-2.35.1/
+> make prefix=/usr/local/git all
+> make prefix=/usr/local/git install
+> echo "export PATH=$PATH:/usr/local/git/bin" >> /etc/bashrc
+> source /etc/bashrc
+
+
+
+
+

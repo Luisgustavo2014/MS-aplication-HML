@@ -1,0 +1,25 @@
+## criação de conexão com o rabbit, postgres e redis e postgres
+
+** Criar esses arquivos
+API
+  ↳ config
+    ↳ database_connection.py
+    ↳ rabbitmq_connection.py
+    ↳ redis_connection.py
+  ↳ docker-compose-api.yml
+  ↳ Dockerfile
+  ↳ requirements.txt
+  ↳ server.py
+
+- Importação psycopg2, pika;
+
+- Postgres
+    - Criação de method init para criar a conexão com postgres ai instanciar a classe
+    - Criação de method para criação de tabelas no postgres
+
+- Rabbit
+    - Criação de method init para criar conexão com rabbit
+
+- Redis
+    - Apenas criação de variaveis de ambiente apenas para exemplo de como será na hora do deploy
+    - Criação de variaveis estaticas para teste em HML

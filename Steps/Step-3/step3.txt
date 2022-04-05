@@ -1,0 +1,17 @@
+## Criação de docker-compose com os serviços
+
+** Mostrar codigo com os services docker explicando o que cada coisa é
+
+** Fazer um teste de conexão tanto no RabbitManagemant quando no PgAdmin
+
+** Liberar portas para conexão externa
+    > OCI > Networking > Virtual Cloud Networks > vcn-20220404-2018 > Security List Details > Ingress Rules
+    Portas:
+        5432    - Postgres
+        5672    - Rabbit
+        7000    - API
+        6379    - Redis
+        15672   - RabbitManagemant
+        16543   - PgAdmin
+        
+** Fazer teste de conexão no RabbitManagemant e PgAdmin para mostrar que esta funcio nando
