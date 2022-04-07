@@ -42,13 +42,10 @@ class ConnectionDatabase():
 
             CREATE TABLE IF NOT EXISTS orders (
                 order_id SERIAL NOT NULL,
-                user_id integer NOT NULL,
-                item_description varchar(256) NOT NULL,
+                user_id integer,
+                item_description integer NOT NULL,
                 item_quantity integer NOT NULL,
                 item_price integer NOT NULL,
-                total_value integer NOT NULL,
-                created_at TIMESTAMP,
-                updated_at TIMESTAMP,
                 PRIMARY KEY (order_id),
                 FOREIGN KEY(user_id) REFERENCES users(user_id)
             );'''

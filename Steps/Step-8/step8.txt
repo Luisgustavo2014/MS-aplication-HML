@@ -1,0 +1,47 @@
+## criação dos workers de processamento do payload para executar as querys no banco de dados
+
+** Criar esses arquivos
+MS1
+  ↳ config
+    ↳ __init__.py
+    ↳ database_connection.py
+    ↳ rabbitmq_connection.py
+  ↳ database_controller
+    ↳ postgres_worker.py
+  ↳ docker-compose-microservice1.yml
+  ↳ Dockerfile
+  ↳ requirements.txt
+  ↳ main.py
+
+
+** explicar as tags q irão vir da API para definir o que deverá ser processado no postgres
+** mostrar codigos de CRUD do database
+
+PostgresWorker:
+
+    __init__ :
+      - conexão com o banco de dados e criação de variaveis de data
+
+    insert_user : 
+      - insersão de dados do usuario
+
+    alter_user : 
+      - alterar informações do usuario
+    
+    alter_password : 
+      - alterar senha do usuario
+
+    show_all_user :
+      - mostra todos os usuarios na tabela de usuarios
+
+    show_one_user : 
+      - mostra um unico ususario, passando o nickname
+
+    delete_user : 
+      - deletar um usuario, passando o nickname
+
+    information_user :
+      - puxa todas as informações do usuario, pesquisando pelo nickname
+
+    take_pass :
+      - captura a senha do usuario

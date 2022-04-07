@@ -1,4 +1,45 @@
 ## Fila no Rabbit
 
-** Exemplo de como funciona a fila 
+** Exemplo de como funciona a fila <criar uma animação>
 ** Criar um exemplo de fila simples
+
+** Criar esses arquivos
+API
+  ↳ config
+    ↳ __init__.py
+    ↳ database_connection.py
+    ↳ rabbitmq_connection.py
+    ↳ redis_connection.py
+  ↳ config
+    ↳ rabbit_queues.py
+  ↳ docker-compose-api.yml
+  ↳ Dockerfile
+  ↳ requirements.txt
+  ↳ server.py
+
+
+** é necessario criar um em nosso projeto criar uma arquitetura de "Remote procedure call"(RPC)
+** explicação do que é RPC <criar uma animação>
+
+**   __init__ :
+        - cria a conexão com o server Rabbit 
+        - cria a fila de controle que vamos utilizar depois
+        - chama um processo de thread para o processamento assincrono
+
+    create_queues :
+        - crias as filas estaticas q vamos utilizar
+
+    rpc_async :
+        - criado o ID da fila de controle
+        - envia o payload para fila estatica 
+    
+    _create_process_thread :
+        - cria a thread de processamento para enviar para 
+    
+    _process_data_events : 
+        - fica lendo a fila de controle que criamos para receber o response e retornar ao usuario
+
+    _on_response :
+        - recebe o response do Microservice
+
+

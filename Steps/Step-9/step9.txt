@@ -1,0 +1,34 @@
+## criptografia de de senhas
+
+** Criar esses arquivos
+MS1
+  ↳ config
+    ↳ __init__.py
+    ↳ database_connection.py
+    ↳ rabbitmq_connection.py
+  ↳ criptografy
+    ↳ hash_password.py
+  ↳ database_controller
+    ↳ postgres_worker.py
+  ↳ docker-compose-microservice1.yml
+  ↳ Dockerfile
+  ↳ requirements.txt
+  ↳ main.py
+
+
+EncriptPassword: Utilizamos o paradigma de encapsulamento
+    __init__ :
+        - criada a variavel privada para 
+
+
+
+PostgresWorker :
+
+    verify_password_database : 
+        - verifica se a senha que o usuario passou na request é a 
+        mesma que esta cryptografada no banco de dados 
+
+    encript_password : 
+        - cryptografa a senha do usuario
+
+

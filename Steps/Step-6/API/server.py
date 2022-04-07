@@ -23,11 +23,9 @@ class Api_server():
 
     # ---------------Test Route----------------
     @app.route("/test/", methods=['POST'])
-    @cache.cached(timeout=30, query_string=True)
     def test():
         if request.method == 'POST':
             payload = request.get_json()
-            payload['type'] = 'create'
 
             corr_id = rabbit_queues.rpc_async(json.dumps(payload), "user")
             while rabbit_queues.queue[corr_id] is None:
@@ -42,7 +40,6 @@ class Api_server():
     def create_user():
         if request.method == 'POST':
             payload = request.get_json()
-            payload['type'] = 'create'
 
             corr_id = rabbit_queues.rpc_async(json.dumps(payload), "user")
             while rabbit_queues.queue[corr_id] is None:
@@ -53,7 +50,6 @@ class Api_server():
             return {'Status': 404, 'Message': 'Erro no envio do method'}
 
     @app.route("/user/show_all_user/", methods=['GET'])
-    @cache.cached(timeout=30, query_string=True)
     def list_user():
         if request.method == 'GET':
             payload = {'type': 'show_all'}
@@ -67,11 +63,9 @@ class Api_server():
             return {'Status': 404, 'Message': 'Erro no envio do method'}
 
     @app.route("/user/show_one_user/", methods=['POST'])
-    @cache.cached(timeout=30, query_string=True)
     def show_user():
         if request.method == 'POST':
             payload = request.get_json()
-            payload['type'] = 'show_one'
 
             corr_id = rabbit_queues.rpc_async(json.dumps(payload), "user")
             while rabbit_queues.queue[corr_id] is None:
@@ -85,7 +79,6 @@ class Api_server():
     def edit_user():
         if request.method == 'PUT':
             payload = request.get_json()
-            payload['type'] = 'update'
 
             corr_id = rabbit_queues.rpc_async(json.dumps(payload), "user")
             while rabbit_queues.queue[corr_id] is None:
@@ -99,7 +92,6 @@ class Api_server():
     def edit_password():
         if request.method == 'PUT':
             payload = request.get_json()
-            payload['type'] = 'update_password'
 
             corr_id = rabbit_queues.rpc_async(json.dumps(payload), "user")
             while rabbit_queues.queue[corr_id] is None:
@@ -113,7 +105,6 @@ class Api_server():
     def delete_user():
         if request.method == 'DELETE':
             payload = request.get_json()
-            payload['type'] = 'delete_user'
 
             corr_id = rabbit_queues.rpc_async(json.dumps(payload), "user")
             while rabbit_queues.queue[corr_id] is None:
@@ -123,72 +114,41 @@ class Api_server():
         else:
             return {'Status': 404, 'Message': 'Erro no envio do method'}
 
+
+
     # -----------------Order Routes-----------------
 
     @app.route("/order/create_order/", methods=['POST'])
     def create_order():
         if request.method == 'POST':
-            payload = request.get_json()
-            payload['type'] = 'create_order'
-
-            corr_id = rabbit_queues.rpc_async(json.dumps(payload), "order")
-            while rabbit_queues.queue[corr_id] is None:
-                time.sleep(0.1)
-
-            return {'Status': 200, 'Message': json.loads(rabbit_queues.queue[corr_id])}
+            return {'Status': 200, 'Message': 'bem vindo'}
         else:
             return {'Status': 404, 'Message': 'Erro no envio do method'}
 
-    @app.route("/order/list_all_orders/", methods=['GET'])
+    @app.route("/order/list_order/", methods=['GET'])
     def list_order():
         if request.method == 'GET':
-            payload = {'type': 'list_all_orders'}
-
-            corr_id = rabbit_queues.rpc_async(json.dumps(payload), "order")
-            while rabbit_queues.queue[corr_id] is None:
-                time.sleep(0.1)
-
-            return {'Status': 200, 'Message': json.loads(rabbit_queues.queue[corr_id])}
+            return {'Status': 200, 'Message': 'bem vindo'}
         else:
             return {'Status': 404, 'Message': 'Erro no envio do method'}
 
-    @app.route("/order/list_for_users/", methods=['GET'])
-    def list_for_users():
+    @app.route("/order/display_by_order/", methods=['GET'])
+    def display_by_order():
         if request.method == 'GET':
-
             return {'Status': 200, 'Message': 'bem vindo'}
         else:
             return {'Status': 404, 'Message': 'Erro no envio do method'}
 
-    @app.route("/order/show_order/", methods=['POST'])
-    def show_order():
+    @app.route("/order/edit_order/", methods=['POST'])
+    def edit_order():
         if request.method == 'POST':
-
             return {'Status': 200, 'Message': 'bem vindo'}
         else:
             return {'Status': 404, 'Message': 'Erro no envio do method'}
-
-    @app.route("/order/update_order/", methods=['POST'])
-    def update_order():
-        if request.method == 'POST':
-            payload = request.get_json()
-            payload['type'] = 'update_order'
-
-            corr_id = rabbit_queues.rpc_async(json.dumps(payload), "order")
-            while rabbit_queues.queue[corr_id] is None:
-                time.sleep(0.1)
-
-            return {'Status': 200, 'Message': json.loads(rabbit_queues.queue[corr_id])}
-
-            return {'Status': 200, 'Message': 'bem vindo'}
-        else:
-            return {'Status': 404, 'Message': 'Erro no envio do method'}
-
 
     @app.route("/order/delete_order/", methods=['DELETE'])
     def delete_order():
         if request.method == 'DELETE':
-
             return {'Status': 200, 'Message': 'bem vindo'}
         else:
             return {'Status': 404, 'Message': 'Erro no envio do method'}
