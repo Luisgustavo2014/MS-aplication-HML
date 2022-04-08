@@ -32,8 +32,8 @@ class RabbitWorker():
             return psql.edit_order(data)
         elif data['type'] == 'list_all_orders':
             return psql.list_all_orders()
-        elif data['type'] == 'list_for_users':
-            return psql.list_for_users(data)
+        elif data['type'] == 'list_per_users':
+            return psql.list_per_users(data)
         elif data['type'] == 'show_order':
             return psql.show_order(data)
         elif data['type'] == 'delete_order':

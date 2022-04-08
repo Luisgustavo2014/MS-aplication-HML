@@ -62,7 +62,7 @@ class Api_server():
             while rabbit_queues.queue[corr_id] is None:
                 time.sleep(0.1)
 
-            return {'Status': 200, 'Message': json.loads(rabbit_queues.queue[corr_id])}
+            return {'Status': 200, 'All Users': json.loads(rabbit_queues.queue[corr_id])}
         else:
             return {'Status': 404, 'Message': 'Erro no envio do method'}
 
@@ -140,6 +140,7 @@ class Api_server():
             return {'Status': 404, 'Message': 'Erro no envio do method'}
 
     @app.route("/order/list_all_orders/", methods=['GET'])
+    @cache.cached(timeout=30, query_string=True)
     def list_order():
         if request.method == 'GET':
             payload = {'type': 'list_all_orders'}
@@ -148,29 +149,43 @@ class Api_server():
             while rabbit_queues.queue[corr_id] is None:
                 time.sleep(0.1)
 
-            return {'Status': 200, 'Message': json.loads(rabbit_queues.queue[corr_id])}
+            return {'Status': 200, 'Orders': json.loads(rabbit_queues.queue[corr_id])}
         else:
             return {'Status': 404, 'Message': 'Erro no envio do method'}
 
-    @app.route("/order/list_for_users/", methods=['GET'])
-    def list_for_users():
+    @app.route("/order/list_per_users/", methods=['GET'])
+    @cache.cached(timeout=30, query_string=True)
+    def list_per_users():
         if request.method == 'GET':
+            payload = request.get_json()
+            payload['type']= 'list_per_users'
 
-            return {'Status': 200, 'Message': 'bem vindo'}
+            corr_id = rabbit_queues.rpc_async(json.dumps(payload), "order")
+            while rabbit_queues.queue[corr_id] is None:
+                time.sleep(0.1)
+
+            return {'Status': 200, 'Orders': json.loads(rabbit_queues.queue[corr_id])}
         else:
             return {'Status': 404, 'Message': 'Erro no envio do method'}
 
-    @app.route("/order/show_order/", methods=['POST'])
+    @app.route("/order/show_order/", methods=['GET'])
+    @cache.cached(timeout=30, query_string=True)
     def show_order():
-        if request.method == 'POST':
+        if request.method == 'GET':
+            payload = request.get_json()
+            payload['type']= 'show_order'
 
-            return {'Status': 200, 'Message': 'bem vindo'}
+            corr_id = rabbit_queues.rpc_async(json.dumps(payload), "order")
+            while rabbit_queues.queue[corr_id] is None:
+                time.sleep(0.1)
+
+            return {'Status': 200, 'Orders': json.loads(rabbit_queues.queue[corr_id])}
         else:
             return {'Status': 404, 'Message': 'Erro no envio do method'}
 
-    @app.route("/order/update_order/", methods=['POST'])
+    @app.route("/order/update_order/", methods=['PUT'])
     def update_order():
-        if request.method == 'POST':
+        if request.method == 'PUT':
             payload = request.get_json()
             payload['type'] = 'update_order'
 
@@ -178,9 +193,7 @@ class Api_server():
             while rabbit_queues.queue[corr_id] is None:
                 time.sleep(0.1)
 
-            return {'Status': 200, 'Message': json.loads(rabbit_queues.queue[corr_id])}
-
-            return {'Status': 200, 'Message': 'bem vindo'}
+            return {'Status': 200, 'Order': json.loads(rabbit_queues.queue[corr_id])}
         else:
             return {'Status': 404, 'Message': 'Erro no envio do method'}
 
@@ -188,8 +201,14 @@ class Api_server():
     @app.route("/order/delete_order/", methods=['DELETE'])
     def delete_order():
         if request.method == 'DELETE':
+            payload = request.get_json()
+            payload['type'] = 'delete_order'
 
-            return {'Status': 200, 'Message': 'bem vindo'}
+            corr_id = rabbit_queues.rpc_async(json.dumps(payload), "order")
+            while rabbit_queues.queue[corr_id] is None:
+                time.sleep(0.1)
+
+            return {'Status': 200, 'Order': json.loads(rabbit_queues.queue[corr_id])}
         else:
             return {'Status': 404, 'Message': 'Erro no envio do method'}
 

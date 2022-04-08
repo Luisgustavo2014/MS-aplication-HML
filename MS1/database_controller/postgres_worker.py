@@ -118,7 +118,7 @@ class PostgresWorker():
                 dict_all_users.append(dict_response)
 
             print('[✓] SELECT DONE SUCCESSFULLY IN POSTGRES!')
-            return {'users': dict_all_users}
+            return dict_all_users
         except Exception as error:
             print(error)
             return f'[X] ERROR ON SELECT IN POSTGRES! {error}'
