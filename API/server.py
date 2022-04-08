@@ -1,8 +1,7 @@
 #!/usr/bin/python
 # -*- encoding: utf-8 -*-
 
-import json
-import time
+import json, time
 from flask import Flask, request
 from flask_caching import Cache  # Import Cache from flask_caching module
 from config.database_connection import ConnectionDatabase

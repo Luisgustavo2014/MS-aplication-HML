@@ -1,8 +1,8 @@
 import psycopg2
 import os
 
-# HOST_DATABSE = os.environ['HOST_DATABASE']
-HOST_DATABSE = '144.22.193.219'
+HOST_DATABSE = os.environ['HOST_DATABASE']
+# HOST_DATABSE = '144.22.193.219'
 
 class ConnectionDatabase():
 

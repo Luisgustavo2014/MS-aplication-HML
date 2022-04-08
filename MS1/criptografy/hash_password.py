@@ -1,4 +1,3 @@
-from shutil import ExecError
 from argon2 import PasswordHasher
 
 ## encapsulamento

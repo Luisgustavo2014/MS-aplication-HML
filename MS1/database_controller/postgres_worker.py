@@ -1,4 +1,3 @@
-import psycopg2
 
 from config.database_connection import ConnectionDatabase
 from criptografy.hash_password import EncriptPassword

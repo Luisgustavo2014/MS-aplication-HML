@@ -1,4 +1,5 @@
-import psycopg2
+#!/usr/bin/python
+# -*- encoding: utf-8 -*-
 
 from config.database_connection import ConnectionDatabase
 from datetime import datetime

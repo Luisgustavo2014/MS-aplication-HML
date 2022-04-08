@@ -1,9 +1,10 @@
 #!/usr/bin/python
 # -*- encoding: utf-8 -*-
 
-import pika
+import pika, os
 
-HOST_RABBIT = '144.22.193.219'
+HOST_RABBIT = os.environ['HOST']
+# HOST_RABBIT = '144.22.193.219'
 
 class ConnectionRabbitMq():
     
