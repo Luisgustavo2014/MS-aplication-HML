@@ -6,4 +6,4 @@ EXPOSE 7001
 WORKDIR /app
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
-RUN python rabbit_recive/revice_queue.py
+RUN python main.py
