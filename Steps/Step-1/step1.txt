@@ -2,6 +2,7 @@
 
 ** Criar um Compartment Development
     > Identity & Security > compartments 
+    > Development
 
 ** Criar um user Devel_user - Senha@123
     > Identity & Security > users 
@@ -31,3 +32,6 @@
     # Add SSH keys - adicionar a ssh_key do usuario OCI
 
 
+devel_user
+t-mr-$AsR6x+iLiwPnkg
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDWFdCZhjbmKfJ8cuVuL+yrUoCIGSaK6sAjUTr4Oy85cYXUcAl+rq0o6geIPqiQehm+OE/9loIE8EWXFYSe92bak0G9dmW77VcPLJC+/n6j7petkK4b7Sfyq64wrLmyrqgLHybx0BOmBMXu2mQh1up1HTzCaYlSBhuDNYi4mFKX6Iv55lpGPjePqKa7s6VRur4Q6aDW2ughGZN3Gq+8iOyecLKRRbVMKZcg6NPCIozDlXsQ2iUhFH6q8S/0eEUUFIJ2I4TcFi+aypFb1Fx/D4I3qfQDVixPX+PhH1zYJ9LVOt1IgRfHE7f9+4yhCEemTqS0uLkDFTULVggj+IV2MjYF devel_user@99df99c4118a
