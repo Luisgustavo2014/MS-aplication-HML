@@ -25,6 +25,7 @@
     > ssh-keygen (salvar a key pra criar a instancia posteriormente)
     > cat /home/patrick-lnx/.ssh/id_rsa.pub
     ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDpC0LrrVooDTRFj1Vnyt4jiqSQk2IFTHUNZ/8rOzkBcdfUlFrABXJkOJhtFP60+xbm2W3NJosSLYVGMkmdRgIPlSGJShG8eqwiM7ifiKv4F7THN+96crVqF0XpwQ5lJtWR0kUjlfvr4LA+kVcx3Bwb5RXr81aMesLq8HzDDhyVqc3ZYICNuILnjTHlgDdhA4LFselgrK/7hrZnDSp00fMsR+9Yli5N6rX/r5C4fPYnKiv8rjuPZ4NykxpTUlD6nReiQca9nehZQcEGYbAZow02fljPT6eHe9/xKO2tVVek/avDAQL1pUEM3M5mnvCXlDokqJZYMvR+6DDXbZ9Lr0DrTSuW76FdT5Fjy5v2ZMV5PY7pLUC0/Q5RDpljjp5HbTLdi8scI4rLFc2paOjV4jo0EPnRyAU3opPZpmk+oSVK288T88JQR8u/7eu8LL5td0FXUPcp/jY0bUAKA4pNLhsAxWv2mgRjWIvbMH3643leTBVu0yjIZ3x77/icvxd9bJ8= patrick-lnx@Patrick-Piccini
+    ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDWFdCZhjbmKfJ8cuVuL+yrUoCIGSaK6sAjUTr4Oy85cYXUcAl+rq0o6geIPqiQehm+OE/9loIE8EWXFYSe92bak0G9dmW77VcPLJC+/n6j7petkK4b7Sfyq64wrLmyrqgLHybx0BOmBMXu2mQh1up1HTzCaYlSBhuDNYi4mFKX6Iv55lpGPjePqKa7s6VRur4Q6aDW2ughGZN3Gq+8iOyecLKRRbVMKZcg6NPCIozDlXsQ2iUhFH6q8S/0eEUUFIJ2I4TcFi+aypFb1Fx/D4I3qfQDVixPX+PhH1zYJ9LVOt1IgRfHE7f9+4yhCEemTqS0uLkDFTULVggj+IV2MjYF devel_user@99df99c4118a
 
 ** criar instancia
     > compute > instances > create instance
