@@ -3,13 +3,12 @@
 
 from flask import Flask, request
 
-
 class Api_server():
     app = Flask(__name__)
 
     # ---------------User Routes----------------
-    @app.route("/user/create_user/", methods=['POST'])
-    def create_user():
+    @app.route("/user/create_user/", methods=['POST']) # <- rota que será acessada
+    def create_user(): # <- methodo que será disparado ao acessar a rota acima 
         if request.method == 'POST':
             payload = request.get_json()
 

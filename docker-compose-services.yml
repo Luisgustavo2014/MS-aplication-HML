@@ -2,7 +2,7 @@ version: "3.7"
 networks:
   network-service:
     driver: bridge
-    name: network-internal
+    name: internal-network
     ipam:
       config:
         - subnet: 10.5.0.0/16
@@ -44,7 +44,7 @@ services:
     container_name: pgadmin_container
     image: dpage/pgadmin4
     environment:
-      PGADMIN_DEFAULT_EMAIL: patrickbpiccini@hotmail.com
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
       PGADMIN_DEFAULT_PASSWORD: admin
     ports:
       - "16543:80"
