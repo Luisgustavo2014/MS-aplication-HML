@@ -10,7 +10,7 @@ API
     ↳ database_connection.py
     ↳ rabbitmq_connection.py
     ↳ redis_connection.py
-  ↳ config
+  ↳ rabbitmq_controller
     ↳ rabbit_queues.py
   ↳ docker-compose-api.yml
   ↳ Dockerfile
