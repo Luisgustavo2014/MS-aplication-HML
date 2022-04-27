@@ -22,24 +22,28 @@ API
 ** explicação do que é RPC <criar uma animação>
 
 **   __init__ :
-        - cria a conexão com o server Rabbit 
-        - cria a fila de controle que vamos utilizar depois
-        - chama um processo de thread para o processamento assincrono
+        - cria a conexão com o server Rabbit *
+        - cria a fila de controle que vamos utilizar depois *
+        - chama um processo de thread para o processamento assincrono *
 
     create_queues :
-        - crias as filas estaticas q vamos utilizar
+        - crias as filas estaticas q vamos utilizar *
+    
+    _create_process_thread :
+        - cria a thread de processamento para enviar para *
 
     rpc_async :
         - criado o ID da fila de controle
         - envia o payload para fila estatica 
     
-    _create_process_thread :
-        - cria a thread de processamento para enviar para 
+    _on_response :
+        - recebe o response do Microservice
+
     
     _process_data_events : 
         - fica lendo a fila de controle que criamos para receber o response e retornar ao usuario
 
-    _on_response :
-        - recebe o response do Microservice
+
+
 
 

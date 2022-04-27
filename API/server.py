@@ -13,12 +13,15 @@ rabbit_queues = RabbitQueue()
 
 
 class Api_server():
+
     app = Flask(__name__)
     # app.config.from_object({'CACHE_TYPE':'redis', 'CACHE_REDIS_HOST':'144.22.139.197','CACHE_REDIS_PORT':'6379'})  # Set the configuration variables to the flask application
     app.config.from_object('config.redis_connection.BaseConfig')
     cache = Cache(app)  # Initialize Cache
-    ConnectionDatabase()
-    rabbit_queues.create_queues()
+
+    def __init__(self):
+        ConnectionDatabase()
+        rabbit_queues.create_queues()
 
     # ---------------Test Route----------------
     @app.route("/test/", methods=['POST'])
