@@ -20,7 +20,7 @@ api - 7000
 
 
 ###CONECT TO INSTANCE
-ssh opc@144.22.139.197
+ssh opc@144.22.130.193
 
 ### INSTALL DOCKER ON ORACLE LINUX 8
 https://oracle-base.com/articles/linux/docker-install-docker-on-oracle-linux-ol8
