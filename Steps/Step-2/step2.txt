@@ -24,6 +24,10 @@ https://www.linuxsysadmins.com/install-git-in-centos-rhel-oracle-6-linux/
 > source /etc/bashrc
 
 
+Necessita instalar sudo yum -y install gcc
+serve para compilador de C e C++
+
+yum install python36-devel
 
 
 
