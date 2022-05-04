@@ -12,5 +12,5 @@ EXPOSE 7000
 WORKDIR /app
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
-RUN python server.py
+CMD ['python', 'server.py']
 

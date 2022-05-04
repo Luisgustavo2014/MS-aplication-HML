@@ -19,9 +19,8 @@ class Api_server():
     app.config.from_object('config.redis_connection.BaseConfig')
     cache = Cache(app)  # Initialize Cache
 
-    def __init__(self):
-        ConnectionDatabase()
-        rabbit_queues.create_queues()
+    ConnectionDatabase()
+    rabbit_queues.create_queues()
 
     # ---------------Test Route----------------
     @app.route("/test/", methods=['POST'])
@@ -214,10 +213,10 @@ class Api_server():
         else:
             return {'Status': 404, 'Message': 'Erro no envio do method'}
 
-    # app.run('0.0.0.0', 7000)
+    app.run('0.0.0.0', 7000)
 
 
-if __name__ == '__main__':
+# if __name__ == '__main__':
 
-    APP = Api_server()
-    APP.app.run('0.0.0.0', 7000)
+#     APP = Api_server()
+#     APP.app.run('0.0.0.0', 7000)
