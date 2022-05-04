@@ -5,8 +5,8 @@ services:
     ports:
       - "7000:7000"
     networks:
-      - network-internal
+      - internal-network
 
 networks:
-    network-internal:
+    internal-network:
         external: true

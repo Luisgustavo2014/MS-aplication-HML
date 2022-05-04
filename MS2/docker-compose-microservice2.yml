@@ -2,11 +2,9 @@ version: "3.7"
 services:
   microservice2:
     build: .
-    ports:
-      - "7002:7002"
     networks:
-      - network-internal
+      - internal-network
 
 networks:
-    network-internal:
+    internal-network:
         external: true
