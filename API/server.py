@@ -214,10 +214,10 @@ class Api_server():
         else:
             return {'Status': 404, 'Message': 'Erro no envio do method'}
 
-    app.run('0.0.0.0', 7000)
+    # app.run('0.0.0.0', 7000)
 
 
-# if __name__ == '__main__':
+if __name__ == '__main__':
 
-#     APP = Api_server()
-#     APP.app.run('0.0.0.0', 7000)
+    APP = Api_server()
+    APP.app.run('0.0.0.0', 7000)
