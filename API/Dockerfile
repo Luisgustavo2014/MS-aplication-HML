@@ -12,5 +12,4 @@ EXPOSE 7000
 WORKDIR /app
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
-CMD ['python', 'server.py']
-
+CMD ['python3.8', 'server.py']
