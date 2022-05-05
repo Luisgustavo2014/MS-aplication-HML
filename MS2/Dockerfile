@@ -6,4 +6,4 @@ EXPOSE 7002
 WORKDIR /app
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
-RUN python main.py
+CMD python main.py
