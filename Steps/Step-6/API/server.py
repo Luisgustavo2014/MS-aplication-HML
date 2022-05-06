@@ -6,7 +6,6 @@ import time
 from flask import Flask, request
 from flask_caching import Cache  # Import Cache from flask_caching module
 from config.database_connection import ConnectionDatabase
-from config.rabbitmq_connection import RabbitConnection
 from rabbitmq_controller.rabbit_queues import RabbitQueue
 
 
@@ -16,9 +15,9 @@ rabbit_queues = RabbitQueue()
 class Api_server():
     app = Flask(__name__)
 
-    def __init__(self):
-        rabbit_queues.create_queues()
-
+    ConnectionDatabase()
+    rabbit_queues.create_queues()
+    
     # ---------------Test Route----------------
     @app.route("/test/", methods=['POST'])
     def test():

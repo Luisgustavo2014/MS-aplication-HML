@@ -1,10 +1,10 @@
 #!/usr/bin/python
 # -*- encoding: utf-8 -*-
 
-import pika, uuid, time
+import pika, os
 
 # HOST_RABBIT = os.environ['HOST']
-HOST_RABBIT = '144.22.193.219'
+HOST_RABBIT = '144.22.130.193'
 
 class RabbitConnection():
 

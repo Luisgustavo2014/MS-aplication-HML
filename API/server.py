@@ -5,7 +5,6 @@ import json, time
 from flask import Flask, request
 from flask_caching import Cache  # Import Cache from flask_caching module
 from config.database_connection import ConnectionDatabase
-from config.rabbitmq_connection import RabbitConnection
 from rabbitmq_controller.rabbit_queues import RabbitQueue
 
 
