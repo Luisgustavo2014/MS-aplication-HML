@@ -1,9 +1,7 @@
 #!/usr/bin/python
 # -*- encoding: utf-8 -*-
 
-import json, pika, asyncio
-
-from database_controller.postgres_worker import PostgresWorker
+import json, pika
 
 class RabbitWorker():
 
@@ -21,22 +19,20 @@ class RabbitWorker():
                          body=json.dumps(response_work))
         ch.basic_ack(delivery_tag=method.delivery_tag)
 
-    
     def database_manipulation(self, data):
         # start connection whit postgres
-        psql = PostgresWorker()
         if data['type'] == 'create':
-            return psql.insert_user(data)
+            pass
         elif data['type'] == 'update':
-            return psql.alter_user(data)
+            pass
         elif data['type'] == 'update_password':
-            return psql.alter_password(data)
+            pass
         elif data['type'] == 'show_all':
-            return psql.show_all_user()
+            pass
         elif data['type'] == 'show_one':
-            return psql.show_one_user(data)
+            pass
         elif data['type'] == 'delete_user':
-            return psql.delete_user(data)
+            pass
 
 # if __name__ == '__main__':
 
