@@ -8,12 +8,15 @@ MS1
     ↳ rabbitmq_connection.py
   ↳ database_controller
     ↳ postgres_worker.py
+  ↳ rabbitmq_controller
+    ↳ rabbit_worker.py
   ↳ docker-compose-microservice1.yml
   ↳ Dockerfile
   ↳ requirements.txt
   ↳ main.py
 
 
+** Incertção das tags da API
 ** explicar as tags q irão vir da API para definir o que deverá ser processado no postgres
 ** mostrar codigos de CRUD do database
 

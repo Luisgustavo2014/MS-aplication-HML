@@ -31,7 +31,7 @@ class ConnectionDatabase():
                 user_id SERIAL NOT NULL,
                 nick_name varchar(50) UNIQUE NOT NULL,
                 password varchar(256) NOT NULL,
-                _name varchar(50) NOT NULL,
+                full_name varchar(50) NOT NULL,
                 cpf varchar(11) NOT NULL,
                 email varchar(50) NOT NULL,
                 phone_number varchar(50) NOT NULL,

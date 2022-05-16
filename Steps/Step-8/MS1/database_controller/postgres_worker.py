@@ -1,7 +1,4 @@
-import psycopg2
-
 from config.database_connection import ConnectionDatabase
-from criptografy.hash_password import EncriptPassword
 from datetime import datetime
 
 
@@ -15,10 +12,8 @@ class PostgresWorker():
     # create a user in database
     def insert_user(self, data):
         try:
-            encripted_password = self.encript_password(data['password'])
-
-            query_insert = 'INSERT INTO users (_name, nick_name ,password ,cpf , email, phone_number, created_at, updated_at)VALUES (%s,%s,%s,%s,%s,%s,%s,%s)'
-            vars_query = (data['name'], data['nick_name'], encripted_password, data['cpf'],
+            query_insert = 'INSERT INTO users (full_name, nick_name ,password ,cpf , email, phone_number, created_at, updated_at)VALUES (%s,%s,%s,%s,%s,%s,%s,%s)'
+            vars_query = (data['name'], data['nick_name'], data['password'], data['cpf'],
                           data['email'], data['phone_number'], self.date_time_formate, self.date_time_formate)
             self.PSQL.cursor.execute(query_insert, vars_query)
             self.PSQL.connection.commit()
@@ -34,14 +29,7 @@ class PostgresWorker():
     # Modify the informations of a user
     def alter_user(self, data):
         try:
-            result_psw = self.take_pass(data['nick_name'])
-            verify = self.verify_password_database(
-                result_psw, data['password'])
-
-            if verify == False:
-                return f'[X] PASSWORD NOT EQUAL!'
-
-            query_update = 'UPDATE users SET _name=%s ,cpf=%s , email=%s, phone_number=%s, updated_at=%s WHERE nick_name=%s'
+            query_update = 'UPDATE users SET full_name=%s ,cpf=%s , email=%s, phone_number=%s, updated_at=%s WHERE nick_name=%s'
             vars_query = (data['name'], data['cpf'], data['email'],
                           data['phone_number'], self.date_time_formate, data['nick_name'])
             self.PSQL.cursor.execute(query_update, vars_query)
@@ -74,16 +62,8 @@ class PostgresWorker():
     # Modify the password of a user
     def alter_password(self, data):
         try:
-            result_psw = self.take_pass(data['nick_name'])
-            verify = self.verify_password_database(
-                result_psw, data['password'])
-
-            if verify == False:
-                return f'[X] PASSWORD NOT EQUAL!'
-            new_pass = self.encript_password(data['new_password'])
-
             query_update = 'UPDATE users SET password=%s, updated_at=%s WHERE nick_name=%s'
-            vars_query = (new_pass, self.date_time_formate, data['nick_name'])
+            vars_query = (data['password'], self.date_time_formate, data['nick_name'])
             self.PSQL.cursor.execute(query_update, vars_query)
             self.PSQL.connection.commit()
             row_count = self.PSQL.cursor.rowcount
@@ -152,13 +132,6 @@ class PostgresWorker():
     # Delete a user on database
     def delete_user(self, data):
         try:
-            result_psw = self.take_pass(data['nick_name'])
-            verify = self.verify_password_database(
-                result_psw, data['password'])
-
-            if verify == False:
-                return f'[X] PASSWORD NOT EQUAL!'
-
             sql_delete_query = 'DELETE FROM users WHERE nick_name=%s'
             vars_query_select = data['nick_name']
             self.PSQL.cursor.execute(sql_delete_query, (vars_query_select,))
@@ -200,27 +173,3 @@ class PostgresWorker():
         except Exception as error:
             print(error)
             return f'[X] ERROR SELECT PASSWORD! {error}'
-
-    # Checks input user password with built-in user password
-    def verify_password_database(self, db_password, new_pass):
-        try:
-            EP = EncriptPassword(new_pass)
-            EP.set_pass(db_password[0])
-            response_verify = EP.verify_hash()
-
-            if response_verify is True:
-                return True
-            return False
-        except Exception as error:
-            print(error)
-
-    # encrypt the user's password
-    def encript_password(self, data):
-        try:
-            HS = EncriptPassword(data)
-            HS.hash_password()
-            return HS.get_pass()
-        except Exception as error:
-            print(error)
-            return f'[X] ERROR ON INCRIPTED PASSWORD! \
-        {error}'

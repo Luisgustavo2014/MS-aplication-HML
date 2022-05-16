@@ -16,7 +16,7 @@ class PostgresWorker():
         try:
             encripted_password = self.encript_password(data['password'])
 
-            query_insert = 'INSERT INTO users (_name, nick_name ,password ,cpf , email, phone_number, created_at, updated_at)VALUES (%s,%s,%s,%s,%s,%s,%s,%s)'
+            query_insert = 'INSERT INTO users (full_name, nick_name ,password ,cpf , email, phone_number, created_at, updated_at)VALUES (%s,%s,%s,%s,%s,%s,%s,%s)'
             vars_query = (data['name'], data['nick_name'], encripted_password, data['cpf'],
                           data['email'], data['phone_number'], self.date_time_formate, self.date_time_formate)
             self.PSQL.cursor.execute(query_insert, vars_query)
@@ -40,7 +40,7 @@ class PostgresWorker():
             if verify == False:
                 return f'[X] PASSWORD NOT EQUAL!'
 
-            query_update = 'UPDATE users SET _name=%s ,cpf=%s , email=%s, phone_number=%s, updated_at=%s WHERE nick_name=%s'
+            query_update = 'UPDATE users SET full_name=%s ,cpf=%s , email=%s, phone_number=%s, updated_at=%s WHERE nick_name=%s'
             vars_query = (data['name'], data['cpf'], data['email'],
                           data['phone_number'], self.date_time_formate, data['nick_name'])
             self.PSQL.cursor.execute(query_update, vars_query)
