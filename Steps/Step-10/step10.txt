@@ -1,0 +1,18 @@
+## Criação de Microservice 2
+
+** Recive do rabbitmq
+
+** Criar esses arquivos
+MS2
+  ↳ config
+    ↳ database_connection.py
+    ↳ rabbitmq_connection.py
+  ↳ docker-compose-microservice1.yml
+  ↳ Dockerfile
+  ↳ requirements.txt
+  ↳ main.py
+
+** explicar que requirements, Dockerfile, e docker-compose é somente pra criação do ambiente
+** explicar a parte do config, que é a mesma coisa q na API
+** criação do cosumidor da fila criada na API
+** explicação de como funcionata a parte do "database_manipulation"

@@ -1,43 +1,47 @@
+
 from argon2 import PasswordHasher
 
 ## encapsulamento
 class EncriptPassword():
 
-    def __init__(self, password):
+    def __init__(self):
         self.ph = PasswordHasher()
-        self.password = password
         self.__password = ''
+        self.__hash_password = ''
 
+    #password
     def get_pass(self):
         return self.__password
     
     def set_pass(self, password_imput):
         self.__password = password_imput
-    
-    # @password.setter
-    # def show_pass(self, new_pass):
-    #      raise ValueError("Impossivel alterar password diretamente. Use a funcao hash().")
 
+    #hash password
+    def get_hash_pass(self):
+        return self.__hash_password
+    
+    def set_hash_pass(self, hash_pass):
+        self.__hash_password = hash_pass
+    
     def hash_password(self):
-        self.__password = self.ph.hash(self.password)
+        self.__hash_password = self.ph.hash(self.__password)
 
     def verify_hash(self):
         try:
-            return self.ph.verify(self.__password, self.password)
+            return self.ph.verify(self.__hash_password, self.__password)
         except Exception as error:
             print('Erro in verify hash',error)
             return False
 
-    def change_password(self, data, pass_imput):
-        self.password = pass_imput
-        self.hash_password()
-
-
 
 if __name__ == '__main__':
-    ec = EncriptPassword('senha%&$¨123578')
-    ec.hash_password()    
-    print(ec.get_pass())
+    ec = EncriptPassword()
+    ec.set_pass("Senha@¨123")
+    ec.hash_password()
+    print(ec.verify_hash())
+    # print(ec.get_pass())
+
+
 
 
     

@@ -19,7 +19,6 @@ class Api_server():
 
     ConnectionDatabase()
     rabbit_queues.create_queues()
-
     # ---------------User Routes----------------
     @app.route("/user/create_user/", methods=['POST'])
     def create_user():

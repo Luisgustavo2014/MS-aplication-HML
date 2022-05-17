@@ -1,0 +1,6 @@
+## Camada de cache
+
+** instanciar conexão com servidor redis
+** inserção das linahs de cache nas rotas
+
+

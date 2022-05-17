@@ -1,4 +1,3 @@
-import psycopg2
 
 from config.database_connection import ConnectionDatabase
 from criptografy.hash_password import EncriptPassword
@@ -118,7 +117,7 @@ class PostgresWorker():
                 dict_all_users.append(dict_response)
 
             print('[✓] SELECT DONE SUCCESSFULLY IN POSTGRES!')
-            return {'users': dict_all_users}
+            return dict_all_users
         except Exception as error:
             print(error)
             return f'[X] ERROR ON SELECT IN POSTGRES! {error}'
@@ -202,10 +201,11 @@ class PostgresWorker():
             return f'[X] ERROR SELECT PASSWORD! {error}'
 
     # Checks input user password with built-in user password
-    def verify_password_database(self, db_password, new_pass):
+    def verify_password_database(self, db_password, old_pass):
         try:
-            EP = EncriptPassword(new_pass)
-            EP.set_pass(db_password[0])
+            EP = EncriptPassword()
+            EP.set_pass(old_pass)
+            EP.set_hash_pass(db_password[0])
             response_verify = EP.verify_hash()
 
             if response_verify is True:
@@ -217,9 +217,10 @@ class PostgresWorker():
     # encrypt the user's password
     def encript_password(self, data):
         try:
-            HS = EncriptPassword(data)
+            HS = EncriptPassword()
+            HS.set_pass(data)
             HS.hash_password()
-            return HS.get_pass()
+            return HS.get_hash_pass()
         except Exception as error:
             print(error)
             return f'[X] ERROR ON INCRIPTED PASSWORD! \

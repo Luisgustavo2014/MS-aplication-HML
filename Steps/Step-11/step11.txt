@@ -1,0 +1,50 @@
+## criação dos workers de processamento do payload para executar as querys no banco de dados
+
+** Criar esses arquivos
+MS1
+  ↳ config
+    ↳ __init__.py
+    ↳ database_connection.py
+    ↳ rabbitmq_connection.py
+  ↳ database_controller
+    ↳ postgres_worker.py
+  ↳ rabbitmq_controller
+    ↳ rabbit_worker.py
+  ↳ docker-compose-microservice1.yml
+  ↳ Dockerfile
+  ↳ requirements.txt
+  ↳ main.py
+
+** Incertção das tags da API
+** explicar as tags q irão vir da API para definir o que deverá ser processado no postgres
+** mostrar codigos de CRUD do database
+** apontamento das tags e funções para o rabbit_controller
+
+PostgresWorker:
+
+    __init__ :
+      - conexão com o banco de dados e criação de variaveis de data
+
+    create_order:
+      - criação de order 
+
+    edit_order:
+      - editar informações do edit_order
+
+    list_all_orders:
+      - listar todos os orders contidos no banco de dados
+
+    list_per_users:
+      - listar todos os orders contidos no banco de dados de um determinado usuario
+    
+    show_order:
+      - mostra informações detalhas de um order
+    
+    delete_order:
+      - deleta um order
+
+    information_user:
+      - captura o ID do usuario no bando de dados
+
+    information_order:
+      - captura todas as informações de um chamado no banco de dados
