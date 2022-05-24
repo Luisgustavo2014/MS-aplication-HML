@@ -13,6 +13,6 @@ MS2
   ↳ main.py
 
 ** explicar que requirements, Dockerfile, e docker-compose é somente pra criação do ambiente
-** explicar a parte do config, que é a mesma coisa q na API
+** explicar a parte do config, que é a mesma coisa q no MS1
 ** criação do cosumidor da fila criada na API
 ** explicação de como funcionata a parte do "database_manipulation"

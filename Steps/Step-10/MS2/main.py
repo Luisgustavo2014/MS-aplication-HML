@@ -5,7 +5,6 @@ from config.database_connection import ConnectionDatabase
 from config.rabbitmq_connection import ConnectionRabbitMq
 from rabbitmq_controller.rabbit_worker import RabbitWorker
 
-
 class Main():
 
     def __init__(self):

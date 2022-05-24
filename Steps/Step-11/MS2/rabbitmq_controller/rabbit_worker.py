@@ -2,7 +2,6 @@
 # -*- encoding: utf-8 -*-
 
 import json, pika
-
 from database_controller.postgres_worker import PostgresWorker
 
 class RabbitWorker():

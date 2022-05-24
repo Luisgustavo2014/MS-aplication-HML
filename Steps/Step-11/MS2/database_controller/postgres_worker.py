@@ -34,7 +34,7 @@ class PostgresWorker():
             return f'[X] ERROR INSERTING IN POSTGRES! {error}'
         finally:
             self.PSQL.cursor.close()
-        pass
+
 
     # Modify the informations of a order
     def edit_order(self, data):
